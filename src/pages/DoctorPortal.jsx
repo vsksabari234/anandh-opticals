@@ -386,7 +386,7 @@ export default function DoctorPortal() {
         </div>
       )}
 
-      {/* TAB: DOORSTEP HOME EYE TESTS (Lenskart Signature Field Service) */}
+      {/* TAB: DOORSTEP HOME EYE TESTS (Precision Optical Field Service) */}
       {activeTab === 'home-tests' && (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
@@ -395,7 +395,7 @@ export default function DoctorPortal() {
                 Doorstep Eye Test Bookings
               </h3>
               <p className="text-xs text-slate-500">
-                Lenskart-style home appointments dispatched to Kallakurichi certified field optometrist unit
+                Home appointments dispatched to Kallakurichi certified field optometrist unit
               </p>
             </div>
             <span className="text-xs text-amber-800 bg-amber-50 px-3 py-1 rounded-full border border-amber-300 font-bold">

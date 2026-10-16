@@ -1,222 +1,127 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BUSINESS_INFO } from '../data/business';
-import { useStore } from '../context/StoreContext';
-import {
-  Eye,
-  MapPin,
-  Phone,
-  Mail,
-  Clock,
-  ShieldCheck,
-  Stethoscope,
-  ExternalLink,
-  MessageSquare
-} from 'lucide-react';
 
 export default function Footer() {
-  const { lang, setIsAppointmentModalOpen, setIsVisionTestOpen, setIsTryOnModalOpen } = useStore();
+  const footerLinks = [
+    { to: '/', label: 'Home' },
+    { to: '/catalog', label: 'Shop' },
+    { to: '#clinic', label: 'Clinic', isScroll: true },
+    { to: '#about', label: 'About', isScroll: true },
+    { to: '#appointment', label: 'Contact', isScroll: true }
+  ];
+
+  const handleLinkClick = (link, e) => {
+    if (link.isScroll) {
+      e.preventDefault();
+      const el = document.querySelector(link.to);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
-    <footer className="bg-gradient-to-b from-sky-50/50 via-white to-slate-50 border-t border-sky-100 text-slate-600 text-xs">
-      {/* Upper highlight row with Glacier Blue & Gold Badges */}
-      <div className="border-b border-sky-100 bg-white/70 py-8 px-4 sm:px-8">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-2xl bg-sky-50 border border-sky-200 flex items-center justify-center text-sky-600 shrink-0 shadow-2xs">
-              <ShieldCheck className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="font-extrabold text-slate-900 text-sm">German 3D Refractometry</div>
-              <div className="text-[11px] text-slate-500">Micro-precision diopter calibration</div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-700 shrink-0 shadow-2xs">
-              <Clock className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="font-extrabold text-slate-900 text-sm">1-Hour Lens Edging Lab</div>
-              <div className="text-[11px] text-slate-500">In-clinic automated robotic fitting</div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-2xl bg-sky-50 border border-sky-200 flex items-center justify-center text-sky-600 shrink-0 shadow-2xs">
-              <Stethoscope className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="font-extrabold text-slate-900 text-sm">FIACLE Certified Optometrist</div>
-              <div className="text-[11px] text-slate-500">26+ Years of Community Trust</div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700 shrink-0 shadow-2xs">
-              <MessageSquare className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="font-extrabold text-slate-900 text-sm">WhatsApp Consultation</div>
-              <div className="text-[11px] text-slate-500">Instant lens advice & quotes</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Footer Links */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {/* Col 1: Brand & Doctor Profile */}
-        <div className="space-y-4">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-600 via-sky-500 to-amber-400 flex items-center justify-center text-white font-black shadow-xs">
-              <Eye className="w-4 h-4 text-white" />
-            </div>
-            <span className="font-heading font-black text-slate-900 text-base tracking-tight">
-              ANAND OPTICALS
+    <footer className="w-full bg-[#090909] text-zinc-300 border-t border-[#27272A]/80 py-10 transition-colors">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
+        {/* Brand Logo matching Reference */}
+        <div className="flex items-center gap-3 shrink-0">
+          <div className="flex flex-col items-center">
+            <svg
+              className="w-7 h-3.5 text-[#D4AF87]"
+              viewBox="0 0 48 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="12" cy="12" r="9" />
+              <circle cx="36" cy="12" r="9" />
+              <path d="M21 12 C23 9.5, 25 9.5, 27 12" />
+              <path d="M3 12 L0 10" />
+              <path d="M45 12 L48 10" />
+            </svg>
+            <span className="font-serif-luxury text-sm tracking-[0.25em] text-[#D4AF87] font-semibold leading-none mt-1">
+              ANAND
+            </span>
+            <span className="text-[7px] uppercase tracking-[0.4em] text-zinc-500 font-sans leading-none mt-0.5">
+              OPTICALS
             </span>
           </div>
-
-          <p className="text-slate-600 text-xs leading-relaxed">
-            {lang === 'ta'
-              ? 'கள்ளக்குறிச்சியின் முன்னணி கண் பரிசோதனை நிலையம் மற்றும் சர்வதேச பிராண்டட் கண்ணாடிகள் மையம்.'
-              : 'Kallakurichi’s trusted eye care center offering computerized 3D objective eye testing, progressive lens specialization, and designer frames since 1998.'}
-          </p>
-
-          <div className="p-3.5 bg-white rounded-2xl border border-sky-100 text-[11px] shadow-xs">
-            <div className="font-bold text-slate-900">{BUSINESS_INFO.doctor.name}</div>
-            <div className="text-sky-700 font-semibold">{BUSINESS_INFO.doctor.qualifications}</div>
-            <div className="text-slate-500 mt-0.5">Reg: {BUSINESS_INFO.doctor.regNo}</div>
-          </div>
         </div>
 
-        {/* Col 2: Services & Interactive Tools */}
-        <div className="space-y-3">
-          <h4 className="text-slate-900 font-extrabold text-sm uppercase tracking-wider font-heading">
-            Interactive Tools
-          </h4>
-          <ul className="space-y-2 text-slate-600 font-medium">
-            <li>
-              <button
-                onClick={() => setIsTryOnModalOpen(true)}
-                className="hover:text-sky-700 transition"
+        {/* Center Navigation Links */}
+        <nav className="flex items-center gap-6 sm:gap-10 text-xs uppercase tracking-[0.2em] font-sans text-zinc-400">
+          {footerLinks.map((link) => (
+            link.isScroll ? (
+              <a
+                key={link.label}
+                href={link.to}
+                onClick={(e) => handleLinkClick(link, e)}
+                className="hover:text-[#D4AF87] transition-colors"
               >
-                3D Virtual Frame Try-On
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={() => setIsVisionTestOpen(true)}
-                className="hover:text-sky-700 transition"
-              >
-                Interactive Vision Screening Lab
-              </button>
-            </li>
-            <li>
-              <Link to="/vision-lab" className="hover:text-sky-700 transition">
-                Digital Eye Strain & 20-20-20 Guide
-              </Link>
-            </li>
-            <li>
-              <Link to="/catalog" className="hover:text-sky-700 transition">
-                Eyewear Catalog & Frame Specs
-              </Link>
-            </li>
-            <li>
-              <button
-                onClick={() => setIsAppointmentModalOpen(true)}
-                className="hover:text-sky-700 transition"
-              >
-                Book Clinic Eye Examination
-              </button>
-            </li>
-          </ul>
-        </div>
-
-        {/* Col 3: Doctor & Staff Admin */}
-        <div className="space-y-3">
-          <h4 className="text-slate-900 font-extrabold text-sm uppercase tracking-wider font-heading">
-            Clinic & Doctor Portal
-          </h4>
-          <ul className="space-y-2 text-slate-600 font-medium">
-            <li>
+                {link.label}
+              </a>
+            ) : (
               <Link
-                to="/doctor"
-                className="text-amber-800 hover:text-amber-900 font-bold flex items-center gap-1.5"
+                key={link.label}
+                to={link.to}
+                className="hover:text-[#D4AF87] transition-colors"
               >
-                <Stethoscope className="w-3.5 h-3.5 text-amber-600" /> Doctor Admin & Rx Pad
+                {link.label}
               </Link>
-            </li>
-            <li>
-              <Link to="/doctor" className="hover:text-sky-700 transition">
-                Today's Patient Examination Queue
-              </Link>
-            </li>
-            <li>
-              <Link to="/doctor" className="hover:text-sky-700 transition">
-                Digital Ophthalmic Rx Generator
-              </Link>
-            </li>
-            <li>
-              <Link to="/doctor" className="hover:text-sky-700 transition">
-                Inventory & Frame Stock Alert
-              </Link>
-            </li>
-          </ul>
+            )
+          ))}
+        </nav>
 
-          <div className="pt-2">
-            <span className="text-[11px] text-slate-800 block font-bold">
-              Clinic Working Hours:
-            </span>
-            <div className="text-[11px] text-slate-500 mt-1">
-              Mon - Sat: 9:30 AM - 9:00 PM<br />
-              Sunday: 10:00 AM - 2:00 PM
-            </div>
-          </div>
-        </div>
-
-        {/* Col 4: Address & Contact */}
-        <div className="space-y-3">
-          <h4 className="text-slate-900 font-extrabold text-sm uppercase tracking-wider font-heading">
-            Kallakurichi Clinic Location
-          </h4>
-          <div className="space-y-2.5">
-            <div className="flex items-start gap-2">
-              <MapPin className="w-4 h-4 text-sky-600 shrink-0 mt-0.5" />
-              <span className="text-slate-600 leading-relaxed">
-                {BUSINESS_INFO.address.line1}, {BUSINESS_INFO.address.line2}, {BUSINESS_INFO.address.city}, {BUSINESS_INFO.address.state} - {BUSINESS_INFO.address.pincode}
-              </span>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <Phone className="w-4 h-4 text-sky-600 shrink-0" />
-              <a href={`tel:${BUSINESS_INFO.contact.phone}`} className="text-slate-700 hover:text-sky-700 font-bold transition">
-                {BUSINESS_INFO.contact.phone} / {BUSINESS_INFO.contact.landline}
-              </a>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <Mail className="w-4 h-4 text-sky-600 shrink-0" />
-              <a href={`mailto:${BUSINESS_INFO.contact.email}`} className="text-slate-600 hover:text-sky-700 transition">
-                {BUSINESS_INFO.contact.email}
-              </a>
-            </div>
-
+        {/* Right Social Icons & Tagline */}
+        <div className="flex items-center gap-6 shrink-0">
+          <div className="flex items-center gap-4 text-zinc-400">
+            {/* Instagram */}
             <a
-              href={BUSINESS_INFO.address.googleMapsUrl}
+              href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-800 border border-sky-200 transition text-[11px] font-bold mt-2 shadow-2xs"
+              aria-label="Instagram"
+              className="hover:text-[#D4AF87] transition-colors p-1"
             >
-              Get Directions on Google Maps <ExternalLink className="w-3 h-3 text-sky-600" />
+              <svg className="w-4 h-4 fill-none stroke-currentColor stroke-[1.75]" viewBox="0 0 24 24">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+              </svg>
+            </a>
+            {/* Facebook */}
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className="hover:text-[#D4AF87] transition-colors p-1"
+            >
+              <svg className="w-4 h-4 fill-none stroke-currentColor stroke-[1.75]" viewBox="0 0 24 24">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+              </svg>
+            </a>
+            {/* YouTube */}
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube"
+              className="hover:text-[#D4AF87] transition-colors p-1"
+            >
+              <svg className="w-4 h-4 fill-none stroke-currentColor stroke-[1.75]" viewBox="0 0 24 24">
+                <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
+                <path d="m10 15 5-3-5-3z" />
+              </svg>
             </a>
           </div>
-        </div>
-      </div>
 
-      {/* Copyright */}
-      <div className="border-t border-sky-100 py-4 px-4 sm:px-8 text-center text-slate-500 text-[11px] bg-white">
-        © 2026 Anand Opticals (ஆனந்த் ஆப்டிக்கல்ஸ்), Kallakurichi. All rights reserved. Precision eye care, optical lenses & designer eyewear.
+          <span className="text-xs text-zinc-500 font-serif-luxury italic tracking-wide hidden lg:inline-block border-l border-zinc-800 pl-6">
+            Clear Vision. Better Life.
+          </span>
+        </div>
       </div>
     </footer>
   );

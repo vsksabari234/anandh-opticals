@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 
 export default function HomeEyeTestModal() {
-  const { isHomeEyeTestOpen, setIsHomeEyeTestOpen, bookHomeEyeTest, isGoldMember } = useStore();
+  const { isHomeEyeTestOpen, setIsHomeEyeTestOpen, bookHomeEyeTest } = useStore();
 
   const [formData, setFormData] = useState(() => ({
     name: '',
@@ -58,22 +58,16 @@ export default function HomeEyeTestModal() {
             <X className="w-5 h-5" />
           </button>
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-amber-200 text-xs font-black tracking-wide mb-2">
-            <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-            LENSKART-STYLE DOORSTEP SERVICE
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-sky-100 text-xs font-bold tracking-wide mb-2">
+            <Sparkles className="w-3.5 h-3.5 text-sky-200" />
+            DOORSTEP OPTICAL CARE
           </div>
           <h2 className="text-2xl sm:text-3xl font-heading font-black">
             Free Eye Test @ Your Doorstep
           </h2>
           <p className="text-sky-100 text-xs sm:text-sm mt-1">
-            Certified optometrist visits your home in Kallakurichi with 100+ trending frames & computerized vision equipment.
+            Certified optometrist visits your home in Kallakurichi with 100+ designer frames & computerized vision equipment.
           </p>
-
-          {isGoldMember && (
-            <div className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-amber-400 text-slate-950 text-xs font-black shadow-md">
-              👑 Gold VIP Member: Free Priority Slot & Zero Visit Fee!
-            </div>
-          )}
         </div>
 
         {/* Content Body */}

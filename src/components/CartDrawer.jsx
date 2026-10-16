@@ -9,8 +9,9 @@ import {
   ArrowRight,
   ShieldCheck,
   CheckCircle2,
-  Crown,
-  Truck
+  Truck,
+  Sparkles,
+  Tag
 } from 'lucide-react';
 
 export default function CartDrawer({ isOpen, onClose }) {
@@ -18,9 +19,7 @@ export default function CartDrawer({ isOpen, onClose }) {
     cart,
     removeFromCart,
     updateCartQty,
-    showToast,
-    isGoldMember,
-    toggleGoldMembership
+    showToast
   } = useStore();
 
   const [isOrdered, setIsOrdered] = useState(false);
@@ -40,31 +39,9 @@ export default function CartDrawer({ isOpen, onClose }) {
   // Total quantity of frames
   const totalQty = cart.reduce((c, i) => c + i.quantity, 0);
 
-  // Lenskart Gold Buy 1 Get 1 Free logic:
-  // For every 2 pairs, the cheaper frame price is free
-  let goldDiscount = 0;
-  if (cart.length > 0) {
-    // Flatten individual frame prices
-    const framePrices = [];
-    cart.forEach(item => {
-      for (let q = 0; q < item.quantity; q++) {
-        framePrices.push(item.price);
-      }
-    });
-    // Sort ascending
-    framePrices.sort((a, b) => a - b);
-    // Number of free pairs = Math.floor(totalQty / 2)
-    const freeCount = Math.floor(framePrices.length / 2);
-    for (let i = 0; i < freeCount; i++) {
-      goldDiscount += framePrices[i];
-    }
-  }
-
-  // Standard festive discount if not Gold
-  const standardDiscount = !isGoldMember && subtotal > 3000 ? Math.round(subtotal * 0.1) : 0;
-
-  const appliedDiscount = isGoldMember ? goldDiscount : standardDiscount;
-  const grandTotal = Math.max(0, subtotal - appliedDiscount);
+  // Direct Showroom Festive Discount (15% off orders over ₹2,500)
+  const discount = subtotal >= 2500 ? Math.round(subtotal * 0.15) : 0;
+  const grandTotal = Math.max(0, subtotal - discount);
 
   const handleCheckout = (e) => {
     e.preventDefault();
@@ -73,23 +50,23 @@ export default function CartDrawer({ isOpen, onClose }) {
       return;
     }
     setIsOrdered(true);
-    showToast('🎉 Order received! Our Kallakurichi optician will prepare your eyewear.');
+    showToast('🎉 Order received! Our Kallakurichi optical lab will prepare your eyewear.');
   };
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end bg-slate-900/60 backdrop-blur-md animate-fade-in">
-      <div className="w-full max-w-md bg-white border-l border-sky-100 h-full flex flex-col justify-between shadow-2xl">
+      <div className="w-full max-w-md bg-white border-l border-blue-100 h-full flex flex-col justify-between shadow-2xl">
         {/* Header */}
-        <div className="px-6 py-4 border-b border-sky-100 flex items-center justify-between bg-gradient-to-r from-sky-50/70 via-white to-amber-50/50">
+        <div className="px-6 py-4 border-b border-blue-100 flex items-center justify-between bg-gradient-to-r from-blue-50/70 via-white to-blue-50/40">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-2xl bg-sky-50 border border-sky-200 flex items-center justify-center text-sky-600 shadow-2xs">
+            <div className="w-9 h-9 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 shadow-2xs">
               <ShoppingBag className="w-5 h-5" />
             </div>
             <div>
               <h3 className="text-base font-black text-slate-900 font-heading">
                 Your Eyewear Bag ({totalQty})
               </h3>
-              <p className="text-[11px] text-slate-500 font-semibold">Anand Opticals • Lenskart Partner</p>
+              <p className="text-[11px] text-blue-700 font-semibold">Anand Opticals • Precision Clinic</p>
             </div>
           </div>
 
@@ -98,32 +75,19 @@ export default function CartDrawer({ isOpen, onClose }) {
               setIsOrdered(false);
               onClose();
             }}
-            className="p-2 text-slate-400 hover:text-slate-700 rounded-xl hover:bg-slate-100 transition"
+            className="p-2 text-slate-400 hover:text-slate-700 rounded-xl hover:bg-slate-100 transition cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Lenskart Gold VIP Savings Bar in Cart */}
+        {/* Free Anti-Glare Lenses Included Banner */}
         {cart.length > 0 && !isOrdered && (
-          <div className="px-6 py-2.5 bg-gradient-to-r from-amber-50 to-amber-100/80 border-b border-amber-200 flex items-center justify-between text-xs">
-            <div className="flex items-center gap-1.5 text-amber-900 font-extrabold">
-              <Crown className="w-4 h-4 text-amber-600" />
-              {isGoldMember ? (
-                <span>👑 Gold VIP: Buy 1 Get 1 Free is applied!</span>
-              ) : (
-                <span>Buy 1 Get 1 Free with Gold VIP!</span>
-              )}
+          <div className="px-6 py-2.5 bg-blue-50 border-b border-blue-200/80 flex items-center justify-between text-xs">
+            <div className="flex items-center gap-1.5 text-blue-900 font-extrabold">
+              <Sparkles className="w-4 h-4 text-blue-600" />
+              <span>Complimentary Anti-Glare 420nm Blue Coating Included!</span>
             </div>
-
-            <button
-              onClick={() => {
-                toggleGoldMembership();
-              }}
-              className="text-[10px] font-black uppercase px-2.5 py-1 rounded-full bg-amber-500 hover:bg-amber-600 text-white transition shadow-2xs"
-            >
-              {isGoldMember ? 'VIP Active' : 'Claim Free Pass'}
-            </button>
           </div>
         )}
 
@@ -139,13 +103,13 @@ export default function CartDrawer({ isOpen, onClose }) {
               </h4>
               <p className="text-xs text-slate-600 leading-relaxed max-w-xs mx-auto font-medium">
                 Thank you <strong>{customerName}</strong>! Our optometrist will contact you at{' '}
-                <strong className="text-sky-800">{customerPhone}</strong> to verify your lens power prescription and arrange {deliveryType === 'home' ? 'free home delivery' : 'in-clinic fitting'}.
+                <strong className="text-blue-800">{customerPhone}</strong> to verify your lens power prescription and arrange {deliveryType === 'home' ? 'free home delivery' : 'in-clinic fitting'}.
               </p>
 
-              <div className="bg-sky-50/70 p-4 rounded-2xl border border-sky-100 text-xs text-slate-600 text-left space-y-1">
+              <div className="bg-blue-50/70 p-4 rounded-2xl border border-blue-100 text-xs text-slate-600 text-left space-y-1">
                 <div className="font-bold text-slate-900 mb-1">Clinic & Showroom Address:</div>
                 <p>Anand Opticals, Shop 14, Salem Main Road (Opp. Govt Hospital), Kallakurichi.</p>
-                <p className="text-slate-500 text-[11px] pt-1">Phone: +91 94432 21100 • Open 9:30 AM - 9:00 PM</p>
+                <p className="text-slate-500 text-[11px] pt-1">Phone: +91 94432 28456 • Open 9:30 AM - 9:00 PM</p>
               </div>
 
               <button
@@ -153,7 +117,7 @@ export default function CartDrawer({ isOpen, onClose }) {
                   setIsOrdered(false);
                   onClose();
                 }}
-                className="w-full py-3 bg-sky-600 hover:bg-sky-500 text-white font-bold rounded-2xl text-xs transition shadow-md"
+                className="w-full py-3 btn-primary-blue font-bold rounded-2xl text-xs transition shadow-md cursor-pointer"
               >
                 Continue Browsing
               </button>
@@ -171,9 +135,9 @@ export default function CartDrawer({ isOpen, onClose }) {
               {cart.map((item, idx) => (
                 <div
                   key={`${item.id}-${item.lensId}-${idx}`}
-                  className="bg-white p-3.5 rounded-2xl border border-slate-200 flex items-center gap-3 shadow-2xs hover:border-sky-200 transition"
+                  className="bg-white p-3.5 rounded-2xl border border-slate-200 flex items-center gap-3 shadow-2xs hover:border-blue-200 transition"
                 >
-                  <div className="w-16 h-14 bg-gradient-to-b from-sky-50/40 to-white rounded-xl flex items-center justify-center p-1 shrink-0 border border-sky-100 shadow-2xs overflow-hidden">
+                  <div className="w-16 h-14 bg-gradient-to-b from-blue-50/40 to-white rounded-xl flex items-center justify-center p-1 shrink-0 border border-blue-100 shadow-2xs overflow-hidden">
                     <img
                       src={item.image}
                       alt={item.name}
@@ -186,14 +150,14 @@ export default function CartDrawer({ isOpen, onClose }) {
                       <h5 className="text-xs font-black text-slate-900 truncate">{item.name}</h5>
                       <button
                         onClick={() => removeFromCart(item.id, item.lensId)}
-                        className="text-slate-400 hover:text-rose-500 p-1"
+                        className="text-slate-400 hover:text-rose-500 p-1 cursor-pointer"
                         title="Remove item"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
                     </div>
 
-                    <div className="text-[11px] text-sky-700 font-extrabold">
+                    <div className="text-[11px] text-blue-700 font-extrabold">
                       ₹{item.price.toLocaleString('en-IN')}
                       {item.lens && (
                         <span className="text-slate-500 font-normal"> + ₹{item.lens.price} lens</span>
@@ -201,7 +165,7 @@ export default function CartDrawer({ isOpen, onClose }) {
                     </div>
 
                     {item.lens ? (
-                      <div className="text-[10px] text-sky-800 font-semibold truncate mt-0.5">
+                      <div className="text-[10px] text-blue-800 font-semibold truncate mt-0.5">
                         Lens: {item.lens.name}
                       </div>
                     ) : (
@@ -214,7 +178,7 @@ export default function CartDrawer({ isOpen, onClose }) {
                       <div className="flex items-center bg-slate-50 rounded-lg border border-slate-200">
                         <button
                           onClick={() => updateCartQty(item.id, item.lensId, item.quantity - 1)}
-                          className="p-1 hover:text-slate-900 text-slate-500"
+                          className="p-1 hover:text-slate-900 text-slate-500 cursor-pointer"
                         >
                           <Minus className="w-3 h-3" />
                         </button>
@@ -223,7 +187,7 @@ export default function CartDrawer({ isOpen, onClose }) {
                         </span>
                         <button
                           onClick={() => updateCartQty(item.id, item.lensId, item.quantity + 1)}
-                          className="p-1 hover:text-slate-900 text-slate-500"
+                          className="p-1 hover:text-slate-900 text-slate-500 cursor-pointer"
                         >
                           <Plus className="w-3 h-3" />
                         </button>
@@ -248,20 +212,20 @@ export default function CartDrawer({ isOpen, onClose }) {
                   <button
                     type="button"
                     onClick={() => setDeliveryType('home')}
-                    className={`py-2 px-3 rounded-xl border text-center font-bold transition flex items-center justify-center gap-1.5 ${
+                    className={`py-2 px-3 rounded-xl border text-center font-bold transition flex items-center justify-center gap-1.5 cursor-pointer ${
                       deliveryType === 'home'
-                        ? 'bg-sky-50 border-sky-400 text-sky-900 shadow-2xs'
+                        ? 'bg-blue-50 border-blue-400 text-blue-900 shadow-2xs'
                         : 'bg-white border-slate-200 text-slate-600'
                     }`}
                   >
-                    <Truck className="w-3.5 h-3.5 text-sky-600" /> Free Doorstep
+                    <Truck className="w-3.5 h-3.5 text-blue-600" /> Free Doorstep
                   </button>
                   <button
                     type="button"
                     onClick={() => setDeliveryType('store')}
-                    className={`py-2 px-3 rounded-xl border text-center font-bold transition flex items-center justify-center gap-1.5 ${
+                    className={`py-2 px-3 rounded-xl border text-center font-bold transition flex items-center justify-center gap-1.5 cursor-pointer ${
                       deliveryType === 'store'
-                        ? 'bg-sky-50 border-sky-400 text-sky-900 shadow-2xs'
+                        ? 'bg-blue-50 border-blue-400 text-blue-900 shadow-2xs'
                         : 'bg-white border-slate-200 text-slate-600'
                     }`}
                   >
@@ -277,14 +241,14 @@ export default function CartDrawer({ isOpen, onClose }) {
                   placeholder="Your Full Name *"
                   value={customerName}
                   onChange={(e) => setCustomerName(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-sky-500"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500"
                 />
                 <input
                   type="tel"
                   placeholder="WhatsApp Mobile Number *"
                   value={customerPhone}
                   onChange={(e) => setCustomerPhone(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-sky-500 font-mono"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500 font-mono"
                 />
                 {deliveryType === 'home' && (
                   <input
@@ -292,7 +256,7 @@ export default function CartDrawer({ isOpen, onClose }) {
                     placeholder="Delivery Address in Kallakurichi *"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-sky-500"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500"
                   />
                 )}
               </div>
@@ -302,32 +266,25 @@ export default function CartDrawer({ isOpen, onClose }) {
 
         {/* Footer */}
         {cart.length > 0 && !isOrdered && (
-          <div className="p-5 border-t border-sky-100 bg-slate-50/80 space-y-3">
+          <div className="p-5 border-t border-blue-100 bg-slate-50/80 space-y-3">
             <div className="space-y-1.5 text-xs">
               <div className="flex justify-between text-slate-500 font-medium">
                 <span>Total Frame & Lens Value:</span>
                 <span>₹{subtotal.toLocaleString('en-IN')}</span>
               </div>
 
-              {isGoldMember && goldDiscount > 0 && (
-                <div className="flex justify-between text-amber-700 font-extrabold">
-                  <span className="flex items-center gap-1">
-                    <Crown className="w-3.5 h-3.5 text-amber-600" /> Gold VIP Buy 1 Get 1 Free:
-                  </span>
-                  <span>-₹{goldDiscount.toLocaleString('en-IN')}</span>
-                </div>
-              )}
-
-              {!isGoldMember && standardDiscount > 0 && (
+              {discount > 0 && (
                 <div className="flex justify-between text-emerald-700 font-bold">
-                  <span>Showroom Festive Discount (10%):</span>
-                  <span>-₹{standardDiscount.toLocaleString('en-IN')}</span>
+                  <span className="flex items-center gap-1">
+                    <Tag className="w-3.5 h-3.5 text-emerald-600" /> Showroom Clinic Offer (15%):
+                  </span>
+                  <span>-₹{discount.toLocaleString('en-IN')}</span>
                 </div>
               )}
 
               <div className="flex justify-between text-slate-900 font-extrabold text-sm pt-2 border-t border-slate-200">
                 <span>Final Payable Amount:</span>
-                <span className="text-sky-700 font-heading text-lg font-black">
+                <span className="text-blue-700 font-heading text-lg font-black">
                   ₹{grandTotal.toLocaleString('en-IN')}
                 </span>
               </div>
@@ -335,13 +292,13 @@ export default function CartDrawer({ isOpen, onClose }) {
 
             <button
               onClick={handleCheckout}
-              className="w-full py-3.5 bg-gradient-to-r from-sky-600 via-sky-700 to-amber-600 hover:from-sky-500 hover:to-amber-500 text-white font-extrabold rounded-2xl text-xs transition flex items-center justify-center gap-2 shadow-lg"
+              className="w-full py-3.5 btn-primary-blue font-extrabold rounded-2xl text-xs transition flex items-center justify-center gap-2 shadow-lg cursor-pointer"
             >
               Confirm & Book with 14-Day Free Trial <ArrowRight className="w-4 h-4" />
             </button>
 
             <div className="text-[10px] text-center text-slate-500 flex items-center justify-center gap-1.5 font-semibold">
-              <ShieldCheck className="w-3.5 h-3.5 text-sky-600" /> Free 1-Year Warranty • 100% Computerized Accuracy
+              <ShieldCheck className="w-3.5 h-3.5 text-blue-600" /> Free 1-Year Warranty • 100% Computerized Accuracy
             </div>
           </div>
         )}
