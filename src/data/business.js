@@ -5,7 +5,7 @@ export const BUSINESS_INFO = {
   taglineTamil: "துல்லியமான கண் பரிசோதனை & நவீன கண்ணாடிகள்",
   established: 1998,
   doctor: {
-    name: "Dr. S. Anand",
+    name: "Dr. Ayyadhurai",
     qualifications: "B.Optom, M.Optom, FIACLE (Fellow of International Association of Contact Lens Educators)",
     title: "Senior Consultant Optometrist & Vision Scientist",
     experience: "26+ Years Clinical Experience",
