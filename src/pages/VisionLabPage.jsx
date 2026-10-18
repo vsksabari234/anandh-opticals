@@ -3,7 +3,6 @@ import { useStore } from '../context/StoreContext';
 import GlassesIllustration from '../components/GlassesIllustration';
 import {
   Camera,
-  Eye,
   Activity,
   Sparkles,
   CheckCircle2,
@@ -165,11 +164,10 @@ export default function VisionLabPage() {
     }
   };
 
-  // Ishihara plates
   const ishiharaPlates = [
-    { plateNumber: 12, hint: 'High-contrast orange dots on green background', color: 'bg-emerald-100 text-amber-600' },
-    { plateNumber: 8, hint: 'Red dots forming the number on mixed green circles', color: 'bg-teal-100 text-rose-600' },
-    { plateNumber: 29, hint: 'Dual numerals on multicolored mosaic', color: 'bg-lime-100 text-orange-600' }
+    { plateNumber: 12, hint: 'High-contrast orange dots on dark mosaic', color: 'bg-zinc-800 text-amber-400' },
+    { plateNumber: 8, hint: 'Gold dots forming number on emerald pattern', color: 'bg-zinc-900 text-amber-500' },
+    { plateNumber: 29, hint: 'Dual numerals on multicolored mosaic', color: 'bg-zinc-800 text-[#D4AF87]' }
   ];
 
   const handleIshiharaSubmit = (e) => {
@@ -182,69 +180,69 @@ export default function VisionLabPage() {
         setIshiharaResult('Normal Color Perception Verified (Trichromacy)');
       }
     } else {
-      setIshiharaResult('Subtle Color Discrimination Delay Detected. Book a clinical Ishihara exam.');
+      setIshiharaResult('Subtle Color Discrimination Delay Detected. Book a clinical Ishihara exam with our doctor.');
     }
   };
 
   return (
-    <div className="min-h-screen bg-slate-50/60 pb-20 animate-fade-in text-slate-900">
+    <div className="min-h-screen bg-[#090909] text-zinc-100 selection:bg-[#D4AF87] selection:text-black pb-24">
       
-      {/* 1. Header Banner */}
-      <section className="bg-gradient-to-b from-blue-900 via-blue-800 to-indigo-950 text-white py-12 px-4 sm:px-8 shadow-inner">
+      {/* 1. Header Banner matching Home & Shop */}
+      <section className="bg-[#121214] border-b border-[#27272A]/80 py-12 px-4 sm:px-8">
         <div className="max-w-7xl mx-auto text-center space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-700/60 border border-blue-400 text-blue-100 text-xs font-bold shadow-xs">
-            <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-            Next-Gen Optical Technology
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#18181B] border border-[#D4AF87]/40 text-[#D4AF87] text-[11px] font-semibold tracking-wider uppercase">
+            <Sparkles className="w-3.5 h-3.5" />
+            Next-Gen Optical Studio
           </div>
-          <h1 className="text-3xl sm:text-5xl font-black font-heading tracking-tight">
-            Virtual 3D Try-On Studio & Free Vision Lab
+          <h1 className="font-serif-luxury text-3xl sm:text-5xl text-[#FAF7F0] tracking-tight">
+            Virtual 3D Try-On Studio & Vision Lab
           </h1>
-          <p className="text-sm sm:text-base text-blue-100/90 max-w-2xl mx-auto leading-relaxed">
-            Experience photorealistic augmented-reality frame preview with your camera, evaluate your visual acuity with interactive tests, or schedule your complimentary in-clinic vision lab session in Kallakurichi.
+          <p className="text-zinc-400 text-xs sm:text-sm max-w-2xl mx-auto leading-relaxed font-sans">
+            Experience augmented-reality frame preview with your camera, evaluate your visual acuity with interactive tests, or schedule your complimentary in-clinic vision session in Kallakurichi.
           </p>
 
           {/* Mode Switch Tabs */}
-          <div className="flex flex-wrap items-center justify-center gap-2 pt-4">
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-4">
             <button
               onClick={() => setMainTab('tryon')}
-              className={`px-5 py-3 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2 transition cursor-pointer ${
+              className={`px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition cursor-pointer ${
                 mainTab === 'tryon'
-                  ? 'bg-white text-blue-900 shadow-lg scale-102'
-                  : 'bg-blue-800/80 hover:bg-blue-700/80 text-white border border-blue-600'
+                  ? 'bg-[#D4AF87] text-[#090909] shadow-lg scale-102'
+                  : 'bg-[#18181B] hover:bg-[#27272A] text-zinc-300 border border-[#27272A]'
               }`}
             >
-              <Camera className="w-4 h-4 text-blue-600" />
-              <span>3D Virtual Try-On Studio</span>
+              <Camera className="w-4 h-4" />
+              <span>3D Virtual Try-On</span>
             </button>
 
             <button
               onClick={() => setMainTab('lab-session')}
-              className={`px-5 py-3 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2 transition cursor-pointer ${
+              className={`px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition cursor-pointer ${
                 mainTab === 'lab-session'
-                  ? 'bg-white text-blue-900 shadow-lg scale-102'
-                  : 'bg-blue-800/80 hover:bg-blue-700/80 text-white border border-blue-600'
+                  ? 'bg-[#D4AF87] text-[#090909] shadow-lg scale-102'
+                  : 'bg-[#18181B] hover:bg-[#27272A] text-zinc-300 border border-[#27272A]'
               }`}
             >
-              <Activity className="w-4 h-4 text-blue-600" />
-              <span>Free Vision Lab Tests (Online)</span>
+              <Activity className="w-4 h-4" />
+              <span>Free Vision Lab Tests</span>
             </button>
 
             <button
               onClick={() => setMainTab('clinic-booking')}
-              className={`px-5 py-3 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2 transition cursor-pointer ${
+              className={`px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition cursor-pointer ${
                 mainTab === 'clinic-booking'
-                  ? 'bg-white text-blue-900 shadow-lg scale-102'
-                  : 'bg-blue-800/80 hover:bg-blue-700/80 text-white border border-blue-600'
+                  ? 'bg-[#D4AF87] text-[#090909] shadow-lg scale-102'
+                  : 'bg-[#18181B] hover:bg-[#27272A] text-zinc-300 border border-[#27272A]'
               }`}
             >
-              <Calendar className="w-4 h-4 text-amber-400" />
-              <span>Free In-Clinic Vision Lab Exam</span>
+              <Calendar className="w-4 h-4" />
+              <span>In-Clinic Vision Exam</span>
             </button>
           </div>
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 pt-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 pt-10">
         
         {/* ============================================================== */}
         {/* TAB 1: 3D VIRTUAL AR TRY-ON STUDIO */}
@@ -255,13 +253,13 @@ export default function VisionLabPage() {
               
               {/* Left Column: Interactive AR Mirror Stage */}
               <div className="lg:col-span-7 space-y-4">
-                <div className="bg-white rounded-3xl border-2 border-blue-200/80 p-5 shadow-xl space-y-4">
+                <div className="bg-[#121214] rounded-2xl border border-[#27272A] p-5 shadow-2xl space-y-4">
                   
                   {/* Top Mirror Status Bar */}
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+                  <div className="flex items-center justify-between pb-3 border-b border-[#27272A]">
                     <div className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                      <span className="text-xs font-bold text-slate-900">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#D4AF87] animate-pulse"></span>
+                      <span className="text-xs font-semibold text-[#FAF7F0]">
                         {isWebcamActive ? 'Live Camera Feed' : customPhoto ? 'Custom Upload Preview' : `Model: ${activeModel.name}`}
                       </span>
                     </div>
@@ -270,23 +268,23 @@ export default function VisionLabPage() {
                       {isWebcamActive ? (
                         <button
                           onClick={stopWebcam}
-                          className="px-3 py-1 rounded-lg bg-rose-50 text-rose-700 text-xs font-bold border border-rose-200 hover:bg-rose-100 cursor-pointer"
+                          className="px-3 py-1.5 rounded-lg bg-rose-950/60 text-rose-300 text-xs font-bold border border-rose-800 hover:bg-rose-900/60 cursor-pointer transition"
                         >
                           Stop Camera
                         </button>
                       ) : (
                         <button
                           onClick={startWebcam}
-                          className="px-3 py-1 rounded-lg bg-blue-50 text-blue-800 text-xs font-bold border border-blue-200 hover:bg-blue-100 flex items-center gap-1 cursor-pointer"
+                          className="px-3 py-1.5 rounded-lg bg-[#18181B] text-[#D4AF87] text-xs font-bold border border-[#D4AF87]/40 hover:bg-[#27272A] flex items-center gap-1.5 cursor-pointer transition"
                         >
-                          <Camera className="w-3.5 h-3.5 text-blue-600" />
-                          Use My Webcam
+                          <Camera className="w-3.5 h-3.5 text-[#D4AF87]" />
+                          Use Webcam
                         </button>
                       )}
 
                       <button
                         onClick={() => fileInputRef.current?.click()}
-                        className="px-3 py-1 rounded-lg bg-slate-50 text-slate-700 text-xs font-bold border border-slate-200 hover:bg-slate-100 flex items-center gap-1 cursor-pointer"
+                        className="px-3 py-1.5 rounded-lg bg-[#18181B] text-zinc-300 text-xs font-bold border border-[#27272A] hover:bg-[#27272A] flex items-center gap-1.5 cursor-pointer transition"
                       >
                         <Upload className="w-3.5 h-3.5" />
                         Upload Photo
@@ -302,7 +300,7 @@ export default function VisionLabPage() {
                   </div>
 
                   {/* The Interactive Virtual Stage */}
-                  <div className="relative w-full h-[400px] sm:h-[460px] rounded-2xl overflow-hidden bg-slate-900 flex items-center justify-center select-none shadow-inner">
+                  <div className="relative w-full h-[400px] sm:h-[460px] rounded-xl overflow-hidden bg-black flex items-center justify-center select-none shadow-2xl border border-zinc-900">
                     
                     {/* Face Base Layer */}
                     {isWebcamActive ? (
@@ -335,7 +333,7 @@ export default function VisionLabPage() {
                         transform: `scale(${frameScale})`
                       }}
                     >
-                      <div className="w-[280px] sm:w-[320px] drop-shadow-2xl">
+                      <div className="w-[280px] sm:w-[320px] drop-shadow-[0_20px_30px_rgba(0,0,0,0.9)]">
                         <GlassesIllustration
                           shape={currentFrame.shape}
                           color={currentFrame.color}
@@ -345,22 +343,21 @@ export default function VisionLabPage() {
                     </div>
 
                     {/* Real-time AR Lens Tint Badge */}
-                    <div className="absolute top-3 left-3 bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-full text-white text-[11px] font-bold border border-white/20 flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-blue-400"></span>
+                    <div className="absolute top-3 left-3 bg-black/85 backdrop-blur-md px-3 py-1 rounded-full text-zinc-200 text-[11px] font-semibold border border-[#D4AF87]/40 flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-[#D4AF87]"></span>
                       <span>Lens: {lensFilterMode === 'bluecut' ? '420nm Blue-Shield' : lensFilterMode === 'sun' ? 'UV400 Polarized' : 'Clear Optical'}</span>
                     </div>
 
                     {/* Model Face Shape Pill */}
-                    <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-slate-900 text-[11px] font-bold border border-slate-200 shadow-md">
-                      Face Geometry: <span className="text-blue-700 font-extrabold">{activeModel.faceShape}</span>
+                    <div className="absolute bottom-3 left-3 bg-[#121214]/95 backdrop-blur-md px-3 py-1 rounded-full text-zinc-200 text-[11px] font-semibold border border-[#27272A] shadow-md">
+                      Face Geometry: <span className="text-[#D4AF87] font-bold">{activeModel.faceShape}</span>
                     </div>
-
                   </div>
 
                   {/* Calibration Control Sliders */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-[#18181B] border border-[#27272A] text-xs">
                     <div>
-                      <label className="text-[10px] font-bold uppercase text-slate-500 block mb-1">
+                      <label className="text-[10px] font-semibold uppercase tracking-wider text-zinc-400 block mb-1">
                         Vertical Height: {verticalOffset}px
                       </label>
                       <input
@@ -369,12 +366,12 @@ export default function VisionLabPage() {
                         max="20"
                         value={verticalOffset}
                         onChange={(e) => setVerticalOffset(Number(e.target.value))}
-                        className="w-full accent-blue-600"
+                        className="w-full accent-[#D4AF87]"
                       />
                     </div>
 
                     <div>
-                      <label className="text-[10px] font-bold uppercase text-slate-500 block mb-1">
+                      <label className="text-[10px] font-semibold uppercase tracking-wider text-zinc-400 block mb-1">
                         Scale / Bridge Size: {Math.round(frameScale * 100)}%
                       </label>
                       <input
@@ -384,35 +381,35 @@ export default function VisionLabPage() {
                         step="0.02"
                         value={frameScale}
                         onChange={(e) => setFrameScale(Number(e.target.value))}
-                        className="w-full accent-blue-600"
+                        className="w-full accent-[#D4AF87]"
                       />
                     </div>
 
                     <div>
-                      <label className="text-[10px] font-bold uppercase text-slate-500 block mb-1">
+                      <label className="text-[10px] font-semibold uppercase tracking-wider text-zinc-400 block mb-1">
                         AR Lens Filter
                       </label>
                       <div className="grid grid-cols-3 gap-1">
                         <button
                           onClick={() => setLensFilterMode('original')}
-                          className={`py-1 rounded text-[10px] font-bold ${
-                            lensFilterMode === 'original' ? 'bg-blue-600 text-white' : 'bg-white text-slate-700 border border-slate-200'
+                          className={`py-1 rounded text-[10px] font-bold transition ${
+                            lensFilterMode === 'original' ? 'bg-[#D4AF87] text-[#090909]' : 'bg-[#121214] text-zinc-300 border border-[#27272A]'
                           }`}
                         >
                           Clear
                         </button>
                         <button
                           onClick={() => setLensFilterMode('bluecut')}
-                          className={`py-1 rounded text-[10px] font-bold ${
-                            lensFilterMode === 'bluecut' ? 'bg-blue-600 text-white' : 'bg-white text-slate-700 border border-slate-200'
+                          className={`py-1 rounded text-[10px] font-bold transition ${
+                            lensFilterMode === 'bluecut' ? 'bg-[#D4AF87] text-[#090909]' : 'bg-[#121214] text-zinc-300 border border-[#27272A]'
                           }`}
                         >
                           BlueCut
                         </button>
                         <button
                           onClick={() => setLensFilterMode('sun')}
-                          className={`py-1 rounded text-[10px] font-bold ${
-                            lensFilterMode === 'sun' ? 'bg-blue-600 text-white' : 'bg-white text-slate-700 border border-slate-200'
+                          className={`py-1 rounded text-[10px] font-bold transition ${
+                            lensFilterMode === 'sun' ? 'bg-[#D4AF87] text-[#090909]' : 'bg-[#121214] text-zinc-300 border border-[#27272A]'
                           }`}
                         >
                           Sun Tint
@@ -422,8 +419,8 @@ export default function VisionLabPage() {
                   </div>
 
                   {/* Switch Model Preset Faces */}
-                  <div className="flex items-center justify-between pt-1">
-                    <span className="text-xs font-bold text-slate-500">Preset Face Models:</span>
+                  <div className="flex flex-wrap items-center justify-between pt-2 gap-2">
+                    <span className="text-xs font-semibold text-zinc-400">Preset Face Models:</span>
                     <div className="flex items-center gap-2">
                       {PRESET_MODELS.map((m) => (
                         <button
@@ -433,10 +430,10 @@ export default function VisionLabPage() {
                             setCustomPhoto(null);
                             setActiveModel(m);
                           }}
-                          className={`px-3 py-1 rounded-xl text-xs font-bold border transition cursor-pointer ${
+                          className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition cursor-pointer ${
                             activeModel.id === m.id && !isWebcamActive && !customPhoto
-                              ? 'bg-blue-600 text-white border-blue-600'
-                              : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
+                              ? 'bg-[#D4AF87] text-[#090909] border-[#D4AF87]'
+                              : 'bg-[#18181B] text-zinc-300 border-[#27272A] hover:bg-[#27272A]'
                           }`}
                         >
                           {m.name}
@@ -452,18 +449,18 @@ export default function VisionLabPage() {
               <div className="lg:col-span-5 space-y-4">
                 
                 {/* Active Frame Spotlight Card */}
-                <div className="bg-white rounded-3xl border border-blue-200/80 p-6 shadow-xl space-y-4">
+                <div className="bg-[#121214] rounded-2xl border border-[#27272A] p-6 shadow-2xl space-y-5">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-extrabold uppercase text-blue-800 tracking-wider">
-                      Selected Frame
+                    <span className="text-[10px] font-semibold uppercase text-[#D4AF87] tracking-[0.25em]">
+                      SELECTED FRAME
                     </span>
-                    <span className="px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 text-xs font-bold">
+                    <span className="px-2.5 py-0.5 rounded-full bg-[#18181B] text-[#D4AF87] border border-[#D4AF87]/40 text-xs font-bold">
                       {currentFrame.shape}
                     </span>
                   </div>
 
                   <div className="flex items-center gap-4">
-                    <div className="w-24 h-20 bg-slate-50 rounded-2xl border border-slate-200 flex items-center justify-center p-2 shrink-0">
+                    <div className="w-24 h-20 bg-[#18181B] rounded-xl border border-[#27272A] flex items-center justify-center p-2 shrink-0">
                       <img
                         src={currentFrame.image}
                         alt={currentFrame.name}
@@ -471,59 +468,61 @@ export default function VisionLabPage() {
                       />
                     </div>
                     <div>
-                      <h3 className="text-base font-extrabold text-slate-900 leading-snug">
+                      <h3 className="font-serif-luxury text-lg text-[#FAF7F0] leading-snug">
                         {currentFrame.name}
                       </h3>
-                      <p className="text-xs text-slate-500 mt-0.5">
+                      <p className="text-xs text-zinc-400 mt-0.5">
                         Brand: {currentFrame.brand} • Material: {currentFrame.material}
                       </p>
                       <div className="flex items-baseline gap-2 mt-2">
-                        <span className="text-xl font-black text-slate-900 font-heading">
-                          ₹{currentFrame.price.toLocaleString('en-IN')}
+                        <span className="text-xl font-bold text-[#D4AF87]">
+                          ₹{currentFrame.price?.toLocaleString('en-IN')}
                         </span>
-                        <span className="text-xs text-slate-400 line-through">
-                          ₹{Math.round(currentFrame.price * 1.35).toLocaleString('en-IN')}
-                        </span>
+                        {currentFrame.originalPrice && (
+                          <span className="text-xs text-zinc-500 line-through">
+                            ₹{currentFrame.originalPrice.toLocaleString('en-IN')}
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-blue-50/70 border border-blue-100 text-xs text-blue-900 flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
-                    <span>Includes Free Anti-Glare Coating + Free Hard Case</span>
+                  <div className="p-3 rounded-xl bg-[#18181B] border border-[#27272A] text-xs text-zinc-300 flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#D4AF87] shrink-0" />
+                    <span>Includes Free Anti-Glare Coating + Premium Hard Case</span>
                   </div>
 
                   {addedNotice && (
-                    <div className="p-2.5 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs font-bold text-center">
-                      ✓ Added to Cart Successfully!
+                    <div className="p-2.5 rounded-xl bg-emerald-950/80 border border-emerald-700 text-emerald-300 text-xs font-bold text-center">
+                      ✓ Added to Bag Successfully!
                     </div>
                   )}
 
                   <div className="grid grid-cols-2 gap-3 pt-2">
                     <button
                       onClick={handleAddToCart}
-                      className="py-3 px-4 rounded-xl btn-primary-blue font-bold text-xs flex items-center justify-center gap-2 cursor-pointer"
+                      className="py-3 px-4 rounded-xl bg-[#D4AF87] hover:bg-[#C59F77] text-[#090909] font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-lg transition"
                     >
                       <ShoppingBag className="w-4 h-4" />
-                      Add to Cart
+                      Add to Bag
                     </button>
                     <button
                       onClick={() => setIsAppointmentModalOpen(true)}
-                      className="py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs flex items-center justify-center gap-2 transition cursor-pointer"
+                      className="py-3 px-4 rounded-xl bg-[#18181B] hover:bg-[#27272A] text-[#FAF7F0] border border-[#27272A] font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition cursor-pointer"
                     >
-                      <Calendar className="w-4 h-4 text-blue-600" />
+                      <Calendar className="w-4 h-4 text-[#D4AF87]" />
                       Book Fitting
                     </button>
                   </div>
                 </div>
 
                 {/* Instant Frame Carousel Switcher */}
-                <div className="bg-white rounded-3xl border border-slate-200 p-5 shadow-sm space-y-3">
+                <div className="bg-[#121214] rounded-2xl border border-[#27272A] p-5 shadow-xl space-y-3">
                   <div className="flex items-center justify-between">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                    <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
                       Switch Frame to Try:
                     </h4>
-                    <span className="text-xs font-semibold text-blue-600">{products.length} models ready</span>
+                    <span className="text-xs font-semibold text-[#D4AF87]">{products.length} models ready</span>
                   </div>
 
                   <div className="grid grid-cols-2 gap-2.5 max-h-[300px] overflow-y-auto pr-1">
@@ -533,8 +532,8 @@ export default function VisionLabPage() {
                         onClick={() => setSelectedTryOnProduct(p)}
                         className={`p-2.5 rounded-xl border text-left cursor-pointer transition flex items-center gap-2 ${
                           currentFrame.id === p.id
-                            ? 'bg-blue-50 border-blue-500 shadow-xs ring-1 ring-blue-400'
-                            : 'bg-white border-slate-200 hover:border-blue-200'
+                            ? 'bg-[#18181B] border-[#D4AF87] shadow-md ring-1 ring-[#D4AF87]'
+                            : 'bg-[#141417] border-[#27272A] hover:border-[#D4AF87]/50'
                         }`}
                       >
                         <img
@@ -543,8 +542,8 @@ export default function VisionLabPage() {
                           className="w-12 h-9 object-contain shrink-0"
                         />
                         <div className="min-w-0 flex-1">
-                          <p className="text-[11px] font-bold text-slate-900 truncate">{p.name}</p>
-                          <p className="text-[10px] text-blue-800 font-semibold">₹{p.price}</p>
+                          <p className="text-[11px] font-semibold text-zinc-100 truncate">{p.name}</p>
+                          <p className="text-[10px] text-[#D4AF87] font-bold">₹{p.price}</p>
                         </div>
                       </div>
                     ))}
@@ -566,31 +565,31 @@ export default function VisionLabPage() {
               
               {/* Left Column: Interactive Snellen Tumbling E Chart */}
               <div className="lg:col-span-7 space-y-6">
-                <div className="bg-white rounded-3xl border border-blue-200 p-6 sm:p-8 shadow-xl space-y-6">
+                <div className="bg-[#121214] rounded-2xl border border-[#27272A] p-6 sm:p-8 shadow-2xl space-y-6">
                   
-                  <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+                  <div className="flex items-center justify-between border-b border-[#27272A] pb-4">
                     <div>
-                      <span className="text-xs font-black uppercase tracking-wider text-blue-700">
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#D4AF87]">
                         Test 1 of 3 • Snellen Acuity
                       </span>
-                      <h3 className="text-xl font-bold text-slate-900 mt-0.5">
+                      <h3 className="font-serif-luxury text-2xl text-[#FAF7F0] mt-1">
                         Tumbling E Distance Vision Test
                       </h3>
                     </div>
-                    <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-800 text-xs font-bold">
+                    <span className="px-3 py-1 rounded-full bg-[#18181B] text-[#D4AF87] border border-[#D4AF87]/40 text-xs font-bold">
                       Step {snellenLevel + 1} / {snellenQuestions.length}
                     </span>
                   </div>
 
                   {!snellenCompleted ? (
                     <div className="text-center space-y-6 py-4">
-                      <p className="text-xs text-slate-500">
-                        Sit approximately 1 meter (arm's length) from your monitor. Look at the letter below and tap the direction the legs of the 'E' point to.
+                      <p className="text-xs text-zinc-400 max-w-md mx-auto">
+                        Sit approximately 1 meter (arm's length) from your screen. Look at the letter below and tap the direction the legs of the 'E' point to.
                       </p>
 
                       {/* The Big Tumbling E */}
-                      <div className="h-32 flex items-center justify-center bg-slate-50 rounded-2xl border border-slate-200 shadow-inner">
-                        <span className={`font-mono font-black text-slate-950 ${snellenQuestions[snellenLevel].size}`}>
+                      <div className="h-36 flex items-center justify-center bg-black rounded-xl border border-zinc-800 shadow-inner">
+                        <span className={`font-mono font-black text-[#FAF7F0] select-none ${snellenQuestions[snellenLevel].size}`}>
                           {snellenQuestions[snellenLevel].label}
                         </span>
                       </div>
@@ -599,40 +598,40 @@ export default function VisionLabPage() {
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-md mx-auto">
                         <button
                           onClick={() => handleSnellenAnswer('up')}
-                          className="py-3 px-4 rounded-xl bg-slate-100 hover:bg-blue-600 hover:text-white font-bold text-xs transition cursor-pointer"
+                          className="py-3 px-4 rounded-xl bg-[#18181B] hover:bg-[#D4AF87] hover:text-[#090909] text-zinc-200 border border-[#27272A] font-bold text-xs transition cursor-pointer"
                         >
                           Points UP ↑
                         </button>
                         <button
                           onClick={() => handleSnellenAnswer('down')}
-                          className="py-3 px-4 rounded-xl bg-slate-100 hover:bg-blue-600 hover:text-white font-bold text-xs transition cursor-pointer"
+                          className="py-3 px-4 rounded-xl bg-[#18181B] hover:bg-[#D4AF87] hover:text-[#090909] text-zinc-200 border border-[#27272A] font-bold text-xs transition cursor-pointer"
                         >
                           Points DOWN ↓
                         </button>
                         <button
                           onClick={() => handleSnellenAnswer('left')}
-                          className="py-3 px-4 rounded-xl bg-slate-100 hover:bg-blue-600 hover:text-white font-bold text-xs transition cursor-pointer"
+                          className="py-3 px-4 rounded-xl bg-[#18181B] hover:bg-[#D4AF87] hover:text-[#090909] text-zinc-200 border border-[#27272A] font-bold text-xs transition cursor-pointer"
                         >
                           Points LEFT ←
                         </button>
                         <button
                           onClick={() => handleSnellenAnswer('right')}
-                          className="py-3 px-4 rounded-xl bg-slate-100 hover:bg-blue-600 hover:text-white font-bold text-xs transition cursor-pointer"
+                          className="py-3 px-4 rounded-xl bg-[#18181B] hover:bg-[#D4AF87] hover:text-[#090909] text-zinc-200 border border-[#27272A] font-bold text-xs transition cursor-pointer"
                         >
                           Points RIGHT →
                         </button>
                       </div>
                     </div>
                   ) : (
-                    <div className="text-center space-y-4 py-6 bg-blue-50/60 rounded-2xl border border-blue-200">
-                      <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
-                      <h4 className="text-xl font-black text-slate-900">
+                    <div className="text-center space-y-4 py-8 bg-[#18181B] rounded-xl border border-[#D4AF87]/40">
+                      <CheckCircle2 className="w-12 h-12 text-[#D4AF87] mx-auto" />
+                      <h4 className="font-serif-luxury text-2xl text-[#FAF7F0]">
                         Snellen Acuity Score: {snellenScore} / {snellenQuestions.length}
                       </h4>
-                      <p className="text-xs text-slate-600 max-w-md mx-auto">
+                      <p className="text-xs text-zinc-300 max-w-md mx-auto leading-relaxed">
                         {snellenScore >= 4
                           ? 'Excellent standard visual acuity! You appear to possess 20/20 vision in distance focus.'
-                          : 'Mild distance blur detected. We recommend booking a comprehensive in-clinic auto-refraction test with Dr. S. Anand.'}
+                          : 'Mild distance blur detected. We recommend booking a comprehensive in-clinic refraction test with Dr. S. Anand.'}
                       </p>
                       <button
                         onClick={() => {
@@ -640,7 +639,7 @@ export default function VisionLabPage() {
                           setSnellenScore(0);
                           setSnellenCompleted(false);
                         }}
-                        className="px-4 py-2 rounded-xl bg-white text-blue-800 border border-blue-300 font-bold text-xs"
+                        className="px-6 py-2.5 rounded-full bg-[#D4AF87] text-[#090909] font-bold text-xs uppercase tracking-wider hover:bg-[#C59F77] transition cursor-pointer"
                       >
                         Retake Test
                       </button>
@@ -650,26 +649,26 @@ export default function VisionLabPage() {
                 </div>
 
                 {/* Test 2: Astigmatism Radial Starburst Fan Dial */}
-                <div className="bg-white rounded-3xl border border-blue-200 p-6 sm:p-8 shadow-xl space-y-5">
-                  <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div className="bg-[#121214] rounded-2xl border border-[#27272A] p-6 sm:p-8 shadow-2xl space-y-5">
+                  <div className="flex items-center justify-between border-b border-[#27272A] pb-3">
                     <div>
-                      <span className="text-xs font-black uppercase tracking-wider text-blue-700">
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#D4AF87]">
                         Test 2 of 3 • Corneal Symmetry
                       </span>
-                      <h3 className="text-xl font-bold text-slate-900 mt-0.5">
+                      <h3 className="font-serif-luxury text-2xl text-[#FAF7F0] mt-1">
                         Astigmatism Radial Sunburst Dial
                       </h3>
                     </div>
                   </div>
 
-                  <p className="text-xs text-slate-600">
+                  <p className="text-xs text-zinc-400">
                     Cover one eye with your hand. Look at the radial lines below. Do all lines appear equally sharp, dark, and uniform in contrast, or do some lines look darker, bolder, or doubled?
                   </p>
 
                   {/* SVG Astigmatism Starburst */}
-                  <div className="flex justify-center py-4 bg-slate-50 rounded-2xl border border-slate-200">
+                  <div className="flex justify-center py-6 bg-black rounded-xl border border-zinc-800">
                     <svg className="w-56 h-56" viewBox="0 0 200 200">
-                      <circle cx="100" cy="100" r="90" fill="white" stroke="#e2e8f0" strokeWidth="2" />
+                      <circle cx="100" cy="100" r="90" fill="#090909" stroke="#27272A" strokeWidth="2" />
                       {[...Array(12)].map((_, i) => {
                         const angle = (i * 30 * Math.PI) / 180;
                         const x1 = 100 + 15 * Math.cos(angle);
@@ -683,32 +682,32 @@ export default function VisionLabPage() {
                             y1={y1}
                             x2={x2}
                             y2={y2}
-                            stroke="#0f172a"
-                            strokeWidth={i % 3 === 0 ? "3.5" : "2"}
+                            stroke="#FAF7F0"
+                            strokeWidth={i % 3 === 0 ? "3.5" : "1.8"}
                           />
                         );
                       })}
-                      <circle cx="100" cy="100" r="10" fill="#2563eb" />
+                      <circle cx="100" cy="100" r="10" fill="#D4AF87" />
                     </svg>
                   </div>
 
                   <div className="grid grid-cols-2 gap-3">
                     <button
                       onClick={() => setAstigmatismAnswer('all-uniform')}
-                      className={`py-3 px-4 rounded-xl text-xs font-bold border transition ${
+                      className={`py-3 px-4 rounded-xl text-xs font-bold border transition cursor-pointer ${
                         astigmatismAnswer === 'all-uniform'
-                          ? 'bg-emerald-600 text-white border-emerald-600'
-                          : 'bg-slate-50 hover:bg-slate-100 text-slate-800 border-slate-200'
+                          ? 'bg-[#D4AF87] text-[#090909] border-[#D4AF87]'
+                          : 'bg-[#18181B] hover:bg-[#27272A] text-zinc-200 border-[#27272A]'
                       }`}
                     >
                       All lines look completely equal
                     </button>
                     <button
                       onClick={() => setAstigmatismAnswer('some-darker')}
-                      className={`py-3 px-4 rounded-xl text-xs font-bold border transition ${
+                      className={`py-3 px-4 rounded-xl text-xs font-bold border transition cursor-pointer ${
                         astigmatismAnswer === 'some-darker'
-                          ? 'bg-amber-600 text-white border-amber-600'
-                          : 'bg-slate-50 hover:bg-slate-100 text-slate-800 border-slate-200'
+                          ? 'bg-[#D4AF87] text-[#090909] border-[#D4AF87]'
+                          : 'bg-[#18181B] hover:bg-[#27272A] text-zinc-200 border-[#27272A]'
                       }`}
                     >
                       Some lines are darker / blurrier
@@ -716,10 +715,10 @@ export default function VisionLabPage() {
                   </div>
 
                   {astigmatismAnswer && (
-                    <div className="p-3 rounded-xl bg-blue-50 border border-blue-200 text-xs text-blue-900">
+                    <div className="p-3.5 rounded-xl bg-[#18181B] border border-[#27272A] text-xs text-zinc-300">
                       {astigmatismAnswer === 'all-uniform'
                         ? 'Corneal symmetry appears normal! Low probability of significant astigmatism.'
-                        : 'Noticeable corneal curvature asymmetry indicated. Toric cylindrical lenses are likely required for sharp night vision.'}
+                        : 'Noticeable corneal curvature asymmetry indicated. Toric cylindrical lenses are likely recommended for crisp night vision.'}
                     </div>
                   )}
 
@@ -730,26 +729,26 @@ export default function VisionLabPage() {
               <div className="lg:col-span-5 space-y-6">
                 
                 {/* Ishihara Color Screen */}
-                <div className="bg-white rounded-3xl border border-blue-200 p-6 shadow-xl space-y-4">
+                <div className="bg-[#121214] rounded-2xl border border-[#27272A] p-6 shadow-2xl space-y-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <span className="text-xs font-black uppercase tracking-wider text-blue-700">
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#D4AF87]">
                         Test 3 of 3 • Color Vision
                       </span>
-                      <h3 className="text-base font-bold text-slate-900 mt-0.5">
+                      <h3 className="font-serif-luxury text-xl text-[#FAF7F0] mt-1">
                         Ishihara Mosaic Plate Screening
                       </h3>
                     </div>
-                    <span className="text-xs text-slate-400 font-bold">
+                    <span className="text-xs text-[#D4AF87] font-semibold">
                       Plate {ishiharaStep + 1}/3
                     </span>
                   </div>
 
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-zinc-400">
                     What number do you perceive inside this dot mosaic?
                   </p>
 
-                  <div className={`h-40 rounded-2xl flex items-center justify-center font-black text-6xl tracking-widest border border-slate-300 shadow-inner select-none ${ishiharaPlates[ishiharaStep].color}`}>
+                  <div className={`h-40 rounded-xl flex items-center justify-center font-black text-6xl tracking-widest border border-zinc-800 shadow-inner select-none ${ishiharaPlates[ishiharaStep].color}`}>
                     {ishiharaPlates[ishiharaStep].plateNumber}
                   </div>
 
@@ -759,40 +758,40 @@ export default function VisionLabPage() {
                       placeholder="Type number..."
                       value={ishiharaInput}
                       onChange={(e) => setIshiharaInput(e.target.value)}
-                      className="flex-1 p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800 focus:outline-none focus:border-blue-500"
+                      className="flex-1 p-3 rounded-xl bg-[#18181B] border border-[#27272A] text-xs font-bold text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-[#D4AF87]"
                     />
                     <button
                       type="submit"
-                      className="px-4 py-2.5 rounded-xl btn-primary-blue text-xs font-bold cursor-pointer"
+                      className="px-5 py-3 rounded-xl bg-[#D4AF87] hover:bg-[#C59F77] text-[#090909] text-xs font-bold uppercase tracking-wider cursor-pointer shadow-md transition"
                     >
                       Verify
                     </button>
                   </form>
 
                   {ishiharaResult && (
-                    <div className="p-3 rounded-xl bg-blue-50 border border-blue-200 text-xs font-semibold text-blue-900">
+                    <div className="p-3 rounded-xl bg-[#18181B] border border-[#D4AF87]/40 text-xs font-medium text-zinc-200">
                       {ishiharaResult}
                     </div>
                   )}
                 </div>
 
                 {/* 20-20-20 Digital Screen Ergonomics Companion */}
-                <div className="bg-gradient-to-br from-blue-900 to-indigo-950 text-white rounded-3xl p-6 shadow-xl space-y-4">
+                <div className="bg-[#121214] text-zinc-100 border border-[#27272A] rounded-2xl p-6 shadow-2xl space-y-4">
                   <div className="flex items-center gap-2">
-                    <Clock className="w-5 h-5 text-sky-400" />
-                    <h3 className="font-bold text-base">20-20-20 Screen Relief Companion</h3>
+                    <Clock className="w-5 h-5 text-[#D4AF87]" />
+                    <h3 className="font-serif-luxury text-lg text-[#FAF7F0]">20-20-20 Screen Relief Companion</h3>
                   </div>
-                  <p className="text-xs text-blue-200 leading-relaxed">
-                    Every 20 minutes spent on a screen, look at an object 20 feet away for 20 seconds. This prevents ciliary muscle spasm and dry eyes.
+                  <p className="text-xs text-zinc-400 leading-relaxed font-sans">
+                    Every 20 minutes spent on digital screens, look at an object 20 feet away for 20 seconds. This prevents ciliary muscle spasm and dry eye strain.
                   </p>
 
-                  <div className="p-4 rounded-2xl bg-white/10 backdrop-blur-md text-center space-y-2">
-                    <p className="text-3xl font-black font-mono tracking-widest text-sky-300">
+                  <div className="p-5 rounded-xl bg-black border border-zinc-800 text-center space-y-2">
+                    <p className="text-3xl font-bold font-mono tracking-widest text-[#D4AF87]">
                       {Math.floor(timerSeconds / 60)}:{(timerSeconds % 60).toString().padStart(2, '0')}
                     </p>
                     <button
                       onClick={() => setTimerRunning(!timerRunning)}
-                      className="px-4 py-1.5 rounded-xl bg-white text-blue-950 font-bold text-xs cursor-pointer shadow-md"
+                      className="px-5 py-2 rounded-full bg-[#D4AF87] hover:bg-[#C59F77] text-[#090909] font-bold text-xs uppercase tracking-wider cursor-pointer shadow-md transition"
                     >
                       {timerRunning ? 'Pause Session' : 'Start 20-Min Screen Timer'}
                     </button>
@@ -801,7 +800,7 @@ export default function VisionLabPage() {
                   <div className="pt-2">
                     <button
                       onClick={() => setIsAppointmentModalOpen(true)}
-                      className="w-full py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold text-center transition cursor-pointer"
+                      className="w-full py-3 px-4 rounded-xl bg-[#18181B] hover:bg-[#27272A] text-[#D4AF87] border border-[#D4AF87]/40 text-xs font-bold uppercase tracking-wider text-center transition cursor-pointer"
                     >
                       Book Free Doctor Consultation
                     </button>
@@ -818,70 +817,70 @@ export default function VisionLabPage() {
         {/* TAB 3: BOOK FREE IN-CLINIC VISION LAB EXAM */}
         {/* ============================================================== */}
         {mainTab === 'clinic-booking' && (
-          <div className="bg-white rounded-3xl border border-blue-200 p-8 sm:p-12 shadow-xl space-y-8 animate-fade-in max-w-4xl mx-auto">
+          <div className="bg-[#121214] rounded-2xl border border-[#27272A] p-8 sm:p-12 shadow-2xl space-y-8 animate-fade-in max-w-4xl mx-auto">
             <div className="text-center space-y-3 max-w-xl mx-auto">
-              <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold inline-block">
-                Zero Cost • 100% Free Session
+              <span className="px-3 py-1 rounded-full bg-[#18181B] text-[#D4AF87] border border-[#D4AF87]/40 text-xs font-semibold uppercase tracking-wider inline-block">
+                Zero Cost • 100% Free Consultation
               </span>
-              <h2 className="text-3xl sm:text-4xl font-black text-slate-900 font-heading">
+              <h2 className="font-serif-luxury text-3xl sm:text-4xl text-[#FAF7F0]">
                 Comprehensive In-Clinic Vision Lab Exam
               </h2>
-              <p className="text-slate-600 text-sm">
+              <p className="text-zinc-400 text-sm font-sans leading-relaxed">
                 Get your eyes tested by Dr. S. Anand (M.Optom, FIACLE) with German computerized instrumentation at our Kallakurichi clinic. Free with any frame consultation.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+              <div className="p-5 rounded-xl bg-[#18181B] border border-[#27272A] flex items-start gap-3.5">
+                <CheckCircle2 className="w-5 h-5 text-[#D4AF87] shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-bold text-slate-900 text-sm">3D Auto-Refractometry</h4>
-                  <p className="text-xs text-slate-500 mt-0.5">Objective corneal curvature and refractive index within 3 seconds.</p>
+                  <h4 className="font-semibold text-[#FAF7F0] text-sm">3D Auto-Refractometry</h4>
+                  <p className="text-xs text-zinc-400 mt-0.5">Objective corneal curvature and refractive index within 3 seconds.</p>
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+              <div className="p-5 rounded-xl bg-[#18181B] border border-[#27272A] flex items-start gap-3.5">
+                <CheckCircle2 className="w-5 h-5 text-[#D4AF87] shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-bold text-slate-900 text-sm">Digital Slit-Lamp Exam</h4>
-                  <p className="text-xs text-slate-500 mt-0.5">Microscopic anterior eye health inspection for cornea and tear film stability.</p>
+                  <h4 className="font-semibold text-[#FAF7F0] text-sm">Digital Slit-Lamp Exam</h4>
+                  <p className="text-xs text-zinc-400 mt-0.5">Microscopic anterior eye health inspection for cornea and tear film stability.</p>
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+              <div className="p-5 rounded-xl bg-[#18181B] border border-[#27272A] flex items-start gap-3.5">
+                <CheckCircle2 className="w-5 h-5 text-[#D4AF87] shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-bold text-slate-900 text-sm">Non-Contact Glaucoma NCT Check</h4>
-                  <p className="text-xs text-slate-500 mt-0.5">Painless intraocular pressure measurement for ocular hypertension screening.</p>
+                  <h4 className="font-semibold text-[#FAF7F0] text-sm">Non-Contact Glaucoma NCT Check</h4>
+                  <p className="text-xs text-zinc-400 mt-0.5">Painless intraocular pressure measurement for ocular hypertension screening.</p>
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+              <div className="p-5 rounded-xl bg-[#18181B] border border-[#27272A] flex items-start gap-3.5">
+                <CheckCircle2 className="w-5 h-5 text-[#D4AF87] shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-bold text-slate-900 text-sm">Trial Lens Verification</h4>
-                  <p className="text-xs text-slate-500 mt-0.5">Walk comfortably in actual trial lenses before your prescription is cut.</p>
+                  <h4 className="font-semibold text-[#FAF7F0] text-sm">Trial Lens Verification</h4>
+                  <p className="text-xs text-zinc-400 mt-0.5">Walk comfortably in actual trial lenses before your prescription is cut.</p>
                 </div>
               </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-blue-50 border border-blue-200 text-center space-y-4">
-              <h3 className="font-bold text-slate-900 text-base">
+            <div className="p-8 rounded-xl bg-black border border-[#27272A] text-center space-y-5">
+              <h3 className="font-serif-luxury text-xl text-[#FAF7F0]">
                 Ready to secure your free Vision Lab appointment?
               </h3>
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <button
                   onClick={() => setIsAppointmentModalOpen(true)}
-                  className="px-6 py-3.5 rounded-xl btn-primary-blue text-xs sm:text-sm font-bold flex items-center gap-2 cursor-pointer shadow-md"
+                  className="px-8 py-3.5 rounded-full bg-[#D4AF87] hover:bg-[#C59F77] text-[#090909] text-xs sm:text-sm font-bold uppercase tracking-wider flex items-center gap-2 cursor-pointer shadow-lg transition"
                 >
                   <Calendar className="w-4 h-4" />
                   Select Date & Time (Clinic)
                 </button>
                 <a
                   href="tel:+919443228456"
-                  className="px-5 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 border border-slate-300 text-xs sm:text-sm font-bold flex items-center gap-2"
+                  className="px-6 py-3.5 rounded-full bg-[#18181B] hover:bg-[#27272A] text-[#FAF7F0] border border-[#27272A] text-xs sm:text-sm font-bold uppercase tracking-wider flex items-center gap-2 transition"
                 >
-                  <Phone className="w-4 h-4 text-blue-600" />
+                  <Phone className="w-4 h-4 text-[#D4AF87]" />
                   Call Clinic: 04151-222345
                 </a>
               </div>

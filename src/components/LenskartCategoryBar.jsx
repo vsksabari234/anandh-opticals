@@ -39,7 +39,7 @@ export default function CategoryBar({ activeCategory, onChange, className = '' }
   };
 
   return (
-    <div className={`w-full bg-white border-b border-sky-100 shadow-xs py-3 px-4 sm:px-8 ${className}`}>
+    <div className={`w-full bg-[#121214] border-b border-[#27272A] py-3 px-4 sm:px-8 ${className}`}>
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto scrollbar-none pb-0.5">
           {CATEGORIES.map((cat) => {
@@ -51,15 +51,15 @@ export default function CategoryBar({ activeCategory, onChange, className = '' }
                 key={cat.id}
                 type="button"
                 onClick={() => handleSelect(cat.id)}
-                className={`group shrink-0 flex items-center gap-2 px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold transition-all duration-200 border ${
+                className={`group shrink-0 flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 border cursor-pointer ${
                   isActive
-                    ? 'bg-sky-600 text-white border-sky-600 shadow-md ring-2 ring-sky-200'
-                    : 'bg-slate-50 hover:bg-sky-50/80 text-slate-700 hover:text-sky-900 border-slate-200/80 hover:border-sky-300'
+                    ? 'bg-[#D4AF87] text-[#090909] border-[#D4AF87] font-bold shadow-md'
+                    : 'bg-[#18181B] hover:bg-[#202024] text-zinc-300 hover:text-white border-[#27272A] hover:border-[#D4AF87]/40'
                 }`}
               >
                 <Icon
                   className={`w-4 h-4 transition-transform group-hover:scale-110 ${
-                    isActive ? 'text-white' : 'text-slate-500 group-hover:text-sky-600'
+                    isActive ? 'text-[#090909]' : 'text-[#D4AF87]'
                   }`}
                 />
                 <span>{cat.label}</span>

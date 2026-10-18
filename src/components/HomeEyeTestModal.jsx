@@ -47,26 +47,26 @@ export default function HomeEyeTestModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-md animate-fade-in overflow-y-auto">
-      <div className="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl border border-sky-100 overflow-hidden my-8">
-        {/* Top Header Banner with Glacier Blue & Gold */}
-        <div className="bg-gradient-to-r from-sky-600 via-sky-700 to-amber-600 p-6 text-white relative">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in overflow-y-auto">
+      <div className="relative w-full max-w-xl bg-[#141417] text-zinc-100 rounded-2xl shadow-2xl border border-[#27272A] overflow-hidden my-8">
+        {/* Top Header Banner */}
+        <div className="bg-[#121214] border-b border-[#27272A] p-6 relative">
           <button
             onClick={handleClose}
-            className="absolute top-4 right-4 p-2 rounded-full bg-white/20 hover:bg-white/30 text-white transition"
+            className="absolute top-5 right-5 p-2 rounded-xl bg-[#18181B] text-zinc-400 hover:text-white hover:bg-[#27272A] transition cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-sky-100 text-xs font-bold tracking-wide mb-2">
-            <Sparkles className="w-3.5 h-3.5 text-sky-200" />
-            DOORSTEP OPTICAL CARE
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#18181B] border border-[#D4AF87]/40 text-[#D4AF87] text-[10px] font-semibold tracking-wider uppercase mb-2">
+            <Sparkles className="w-3.5 h-3.5" />
+            DOORSTEP LUXURY OPTICAL CARE
           </div>
-          <h2 className="text-2xl sm:text-3xl font-heading font-black">
-            Free Eye Test @ Your Doorstep
+          <h2 className="font-serif-luxury text-2xl sm:text-3xl text-[#FAF7F0]">
+            Complimentary Doorstep Eye Test
           </h2>
-          <p className="text-sky-100 text-xs sm:text-sm mt-1">
-            Certified optometrist visits your home in Kallakurichi with 100+ designer frames & computerized vision equipment.
+          <p className="text-zinc-400 text-xs sm:text-sm mt-1">
+            Certified optometrist visits your home in Kallakurichi with 100+ luxury frames & German refraction equipment.
           </p>
         </div>
 
@@ -74,99 +74,99 @@ export default function HomeEyeTestModal() {
         <div className="p-6">
           {isBooked ? (
             <div className="text-center py-6 space-y-4">
-              <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center">
+              <div className="w-16 h-16 rounded-full bg-[#18181B] text-[#D4AF87] border border-[#D4AF87]/60 mx-auto flex items-center justify-center shadow-xl">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
-              <h3 className="text-2xl font-black text-slate-900 font-heading">
+              <h3 className="font-serif-luxury text-2xl text-[#FAF7F0]">
                 Doorstep Visit Confirmed!
               </h3>
-              <p className="text-sm text-slate-600 max-w-md mx-auto">
-                Our certified optometrist field unit has been dispatched for{' '}
-                <span className="font-bold text-sky-800">{confirmedBooking?.date}</span> during{' '}
-                <span className="font-bold text-sky-800">{confirmedBooking?.slot}</span>.
+              <p className="text-sm text-zinc-300 max-w-md mx-auto leading-relaxed">
+                Our certified optometrist field unit has been booked for{' '}
+                <span className="font-bold text-[#D4AF87]">{confirmedBooking?.date}</span> during{' '}
+                <span className="font-bold text-[#D4AF87]">{confirmedBooking?.slot}</span>.
               </p>
 
-              <div className="bg-sky-50 border border-sky-200 rounded-2xl p-4 max-w-md mx-auto text-left text-xs space-y-2">
+              <div className="bg-[#18181B] border border-[#27272A] rounded-xl p-4 max-w-md mx-auto text-left text-xs space-y-2.5">
                 <div className="flex justify-between">
-                  <span className="text-slate-500">Booking Ref:</span>
-                  <span className="font-mono font-bold text-slate-800">{confirmedBooking?.id}</span>
+                  <span className="text-zinc-400">Booking Ref:</span>
+                  <span className="font-mono font-bold text-[#D4AF87]">{confirmedBooking?.id}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-500">Patient:</span>
-                  <span className="font-bold text-slate-800">{confirmedBooking?.name}</span>
+                  <span className="text-zinc-400">Patient:</span>
+                  <span className="font-semibold text-[#FAF7F0]">{confirmedBooking?.name}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-500">Location:</span>
-                  <span className="font-bold text-slate-800 truncate max-w-[200px]">{confirmedBooking?.address}</span>
+                  <span className="text-zinc-400">Location:</span>
+                  <span className="font-semibold text-zinc-200 truncate max-w-[200px]">{confirmedBooking?.address}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-500">Frames Box:</span>
-                  <span className="font-bold text-sky-700">100+ Optical & Sun Frames Included</span>
+                  <span className="text-zinc-400">Frames Box:</span>
+                  <span className="font-semibold text-[#D4AF87]">100+ Optical & Sun Frames Included</span>
                 </div>
               </div>
 
               <div className="pt-4">
                 <button
                   onClick={handleClose}
-                  className="w-full py-3 rounded-2xl bg-gradient-to-r from-sky-600 to-sky-700 text-white font-bold text-sm shadow-md"
+                  className="w-full py-3.5 rounded-xl bg-[#D4AF87] hover:bg-[#C59F77] text-[#090909] font-bold text-xs uppercase tracking-wider shadow-lg transition cursor-pointer"
                 >
-                  Done & Continue Shopping
+                  Done & Continue Browsing
                 </button>
               </div>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Feature Perks Pills */}
-              <div className="grid grid-cols-3 gap-2 pb-2 border-b border-slate-100 text-[11px] text-center text-slate-700">
-                <div className="p-2 bg-sky-50/70 rounded-xl border border-sky-100">
-                  <Glasses className="w-4 h-4 text-sky-600 mx-auto mb-1" />
-                  <span className="font-bold block">100+ Frames</span>
-                  <span className="text-[10px] text-slate-500">Try in living room</span>
+              <div className="grid grid-cols-3 gap-2 pb-2 border-b border-[#27272A] text-[11px] text-center text-zinc-300">
+                <div className="p-2.5 bg-[#18181B] rounded-xl border border-[#27272A]">
+                  <Glasses className="w-4 h-4 text-[#D4AF87] mx-auto mb-1" />
+                  <span className="font-bold block text-zinc-100">100+ Frames</span>
+                  <span className="text-[10px] text-zinc-500">Try in living room</span>
                 </div>
-                <div className="p-2 bg-amber-50/70 rounded-xl border border-amber-100">
-                  <ShieldCheck className="w-4 h-4 text-amber-600 mx-auto mb-1" />
-                  <span className="font-bold block">Certified Doctor</span>
-                  <span className="text-[10px] text-slate-500">12-Step eye check</span>
+                <div className="p-2.5 bg-[#18181B] rounded-xl border border-[#27272A]">
+                  <ShieldCheck className="w-4 h-4 text-[#D4AF87] mx-auto mb-1" />
+                  <span className="font-bold block text-zinc-100">Certified Doctor</span>
+                  <span className="text-[10px] text-zinc-500">12-Step eye check</span>
                 </div>
-                <div className="p-2 bg-emerald-50/70 rounded-xl border border-emerald-100">
-                  <Sparkles className="w-4 h-4 text-emerald-600 mx-auto mb-1" />
-                  <span className="font-bold block">Zero Obligation</span>
-                  <span className="text-[10px] text-slate-500">Buy only if loved</span>
+                <div className="p-2.5 bg-[#18181B] rounded-xl border border-[#27272A]">
+                  <Sparkles className="w-4 h-4 text-[#D4AF87] mx-auto mb-1" />
+                  <span className="font-bold block text-zinc-100">Zero Obligation</span>
+                  <span className="text-[10px] text-zinc-500">Buy only if loved</span>
                 </div>
               </div>
 
               {/* Name & Phone */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
+                  <label className="block text-xs font-semibold text-zinc-300 mb-1">
                     Your Full Name *
                   </label>
                   <div className="relative">
-                    <User className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+                    <User className="w-4 h-4 text-zinc-500 absolute left-3 top-3" />
                     <input
                       type="text"
                       required
                       placeholder="e.g. Ramesh Kumar"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full pl-9 pr-3 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
+                      className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-[#18181B] border border-[#27272A] text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-[#D4AF87]"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
+                  <label className="block text-xs font-semibold text-zinc-300 mb-1">
                     Mobile Number *
                   </label>
                   <div className="relative">
-                    <Phone className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+                    <Phone className="w-4 h-4 text-zinc-500 absolute left-3 top-3" />
                     <input
                       type="tel"
                       required
                       placeholder="+91 98400 12345"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full pl-9 pr-3 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
+                      className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-[#18181B] border border-[#27272A] text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-[#D4AF87] font-mono"
                     />
                   </div>
                 </div>
@@ -174,18 +174,18 @@ export default function HomeEyeTestModal() {
 
               {/* Address */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
+                <label className="block text-xs font-semibold text-zinc-300 mb-1">
                   Home Address in Kallakurichi / Nearby *
                 </label>
                 <div className="relative">
-                  <MapPin className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+                  <MapPin className="w-4 h-4 text-zinc-500 absolute left-3 top-3" />
                   <input
                     type="text"
                     required
                     placeholder="House / Street, Landmark, Area (e.g. Near Bus Stand, Salem Main Rd)"
                     value={formData.address}
                     onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                    className="w-full pl-9 pr-3 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
+                    className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-[#18181B] border border-[#27272A] text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-[#D4AF87]"
                   />
                 </div>
               </div>
@@ -193,31 +193,31 @@ export default function HomeEyeTestModal() {
               {/* Date & Time Slot */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
+                  <label className="block text-xs font-semibold text-zinc-300 mb-1">
                     Preferred Date *
                   </label>
                   <div className="relative">
-                    <Calendar className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+                    <Calendar className="w-4 h-4 text-zinc-500 absolute left-3 top-3" />
                     <input
                       type="date"
                       required
                       value={formData.date}
                       onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                      className="w-full pl-9 pr-3 py-2 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
+                      className="w-full pl-9 pr-3 py-2 rounded-xl bg-[#18181B] border border-[#27272A] text-sm text-zinc-100 focus:outline-none focus:border-[#D4AF87] font-mono"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
+                  <label className="block text-xs font-semibold text-zinc-300 mb-1">
                     Time Window *
                   </label>
                   <div className="relative">
-                    <Clock className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+                    <Clock className="w-4 h-4 text-zinc-500 absolute left-3 top-3" />
                     <select
                       value={formData.slot}
                       onChange={(e) => setFormData({ ...formData, slot: e.target.value })}
-                      className="w-full pl-9 pr-3 py-2 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
+                      className="w-full pl-9 pr-3 py-2 rounded-xl bg-[#18181B] border border-[#27272A] text-sm text-zinc-100 focus:outline-none focus:border-[#D4AF87]"
                     >
                       <option>10:00 AM - 12:00 PM (Morning)</option>
                       <option>01:00 PM - 03:00 PM (Afternoon)</option>
@@ -230,13 +230,13 @@ export default function HomeEyeTestModal() {
 
               {/* Frame Preferences */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
+                <label className="block text-xs font-semibold text-zinc-300 mb-1">
                   What frames should our optometrist bring?
                 </label>
                 <select
                   value={formData.framesRequested}
                   onChange={(e) => setFormData({ ...formData, framesRequested: e.target.value })}
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-sky-500"
+                  className="w-full px-3 py-2.5 rounded-xl bg-[#18181B] border border-[#27272A] text-xs text-zinc-100 focus:outline-none focus:border-[#D4AF87]"
                 >
                   <option>Curated 100+ Frames (Men, Women, Computer Blu)</option>
                   <option>Men’s Executive Titanium & Acetate</option>
@@ -251,12 +251,12 @@ export default function HomeEyeTestModal() {
               <div className="pt-3">
                 <button
                   type="submit"
-                  className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-sky-600 via-sky-700 to-amber-600 hover:from-sky-500 hover:to-amber-500 text-white font-extrabold text-sm transition shadow-lg flex items-center justify-center gap-2"
+                  className="w-full py-3.5 rounded-xl bg-[#D4AF87] hover:bg-[#C59F77] text-[#090909] font-bold text-xs uppercase tracking-widest transition shadow-lg flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Home className="w-4 h-4" />
-                  Confirm 100% Free Doorstep Eye Test
+                  Confirm Free Doorstep Eye Test
                 </button>
-                <p className="text-[11px] text-center text-slate-400 mt-2">
+                <p className="text-[11px] text-center text-zinc-500 mt-2">
                   No purchase necessary • Certified optometrist with sanitized lenses • Free trial in home
                 </p>
               </div>

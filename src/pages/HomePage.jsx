@@ -4,7 +4,6 @@ import { useStore } from '../context/StoreContext';
 import { BUSINESS_INFO } from '../data/business';
 import {
   ArrowRight,
-  ArrowLeft,
   Eye,
   Heart,
   User,
@@ -13,7 +12,6 @@ import {
   Phone,
   MapPin,
   Clock,
-  Play,
   Compass,
   CheckCircle2,
   Glasses,
@@ -22,7 +20,7 @@ import {
 } from 'lucide-react';
 
 // Visual Assets exactly matching Reference Image
-import heroVideo from '../assets/gemini_generated_video_046b9ff6.mp4';
+import heroVideo from '../assets/ad.mp4';
 import showroomImg from '../assets/images/optical_showroom_1791949566865.jpg';
 import doctorPortraitImg from '../assets/images/doctor_portrait_1791949570094.jpg';
 import macroEyeImg from '../assets/images/macro_human_eye_iris_1792123622728.jpg';
@@ -37,9 +35,6 @@ export default function HomePage() {
     bookAppointment
   } = useStore();
 
-  // Slide state for hero
-  const [currentSlide, setCurrentSlide] = useState(1);
-  const totalSlides = 4;
 
   // Appointment Form state
   const [bookingData, setBookingData] = useState({
@@ -102,18 +97,18 @@ export default function HomePage() {
           Headline "See the World Differently" on left, script accent on right.
       ========================================================================== */}
       <section className="relative w-full min-h-[92vh] lg:min-h-[96vh] flex items-center bg-[#090909] overflow-hidden">
-        {/* Layer 1: Single continuous full-width background video */}
+        {/* Layer 1: Full-width continuous background video in loop mode */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <video
             autoPlay
             loop
             muted
             playsInline
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-center scale-105"
             aria-hidden="true"
           >
             <source src={heroVideo} type="video/mp4" />
-            <source src="/gemini_generated_video_046b9ff6.mp4" type="video/mp4" />
+            <source src="/ad.mp4" type="video/mp4" />
           </video>
           {/* Layer 2: Subtle dark overlay above video ensuring high-contrast legibility */}
           <div className="absolute inset-0 bg-[#090909]/40"></div>
@@ -121,10 +116,7 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#090909] via-transparent to-[#090909]/50"></div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 py-20 w-full flex flex-col justify-between min-h-[85vh]">
-          {/* Top spacer for navbar balance */}
-          <div className="hidden sm:block"></div>
-
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 py-24 w-full flex flex-col justify-center min-h-[85vh]">
           {/* Main Hero Split Content */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center my-auto">
             {/* Left Headline & Content */}
@@ -147,82 +139,13 @@ export default function HomePage() {
                 <span>Timeless Style</span>
               </div>
 
-              {/* Watch Our Story Circular Action */}
-              <div className="flex items-center gap-6">
-                <button
-                  type="button"
-                  onClick={() => scrollTo('#clinic')}
-                  className="flex items-center gap-3.5 group cursor-pointer"
-                >
-                  <div className="w-12 h-12 rounded-full border border-[#D4AF87]/80 flex items-center justify-center bg-[#D4AF87]/15 group-hover:bg-[#D4AF87] transition-all duration-300">
-                    <Play className="w-4 h-4 fill-[#D4AF87] group-hover:fill-[#090909] text-[#D4AF87] group-hover:text-[#090909] ml-0.5 transition-colors" />
-                  </div>
-                  <span className="text-sm font-sans tracking-wide text-zinc-200 group-hover:text-white transition-colors">
-                    Watch Our Story
-                  </span>
-                </button>
-              </div>
             </div>
 
             {/* Right Side: Cursive Script Accent */}
-            <div className="lg:col-span-5 flex justify-end lg:pr-8">
-              <div className="font-script text-4xl sm:text-5xl lg:text-6xl text-[#D4AF87] leading-tight select-none rotate-[-6deg] drop-shadow-md">
+            <div className="lg:col-span-5 flex justify-end items-end z-20 mt-8 lg:mt-0 lg:self-end pb-4 lg:pb-8">
+              <div className="font-script text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-[#D4AF87] leading-tight select-none rotate-[-3deg] drop-shadow-[0_10px_25px_rgba(0,0,0,0.85)] text-right pointer-events-none tracking-normal">
                 Clear Vision<br />
-                <span className="ml-8 sm:ml-12">Brighter Future</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Hero Bar: Scroll Down Indicator & Slide Pagination */}
-          <div className="flex items-center justify-between pt-8 border-t border-white/5">
-            {/* Scroll Down */}
-            <button
-              type="button"
-              onClick={() => scrollTo('#clinic')}
-              className="flex items-center gap-3 text-zinc-400 hover:text-white transition-colors cursor-pointer group"
-            >
-              <div className="w-5 h-8 rounded-full border border-zinc-600 group-hover:border-[#D4AF87] flex items-start justify-center p-1 transition-colors">
-                <div className="w-1 h-2 bg-[#D4AF87] rounded-full animate-bounce"></div>
-              </div>
-              <span className="text-[11px] uppercase tracking-[0.2em] font-sans">
-                Scroll Down
-              </span>
-            </button>
-
-            {/* Slide Pagination & Arrows */}
-            <div className="flex items-center gap-5 text-xs text-zinc-400 font-sans tracking-widest">
-              <div className="flex items-center gap-1.5">
-                {[1, 2, 3].map((dot) => (
-                  <span
-                    key={dot}
-                    onClick={() => setCurrentSlide(dot)}
-                    className={`w-2 h-2 rounded-full cursor-pointer transition-colors ${
-                      currentSlide === dot ? 'bg-[#D4AF87]' : 'bg-zinc-700 hover:bg-zinc-500'
-                    }`}
-                  />
-                ))}
-              </div>
-
-              <div className="flex items-center gap-3 text-zinc-300">
-                <button
-                  type="button"
-                  onClick={() => setCurrentSlide((prev) => (prev > 1 ? prev - 1 : totalSlides))}
-                  className="hover:text-[#D4AF87] transition-colors p-1"
-                  aria-label="Previous slide"
-                >
-                  <ArrowLeft className="w-3.5 h-3.5" />
-                </button>
-                <span className="tabular-nums font-mono text-[11px] text-zinc-300">
-                  0{currentSlide} / 0{totalSlides}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setCurrentSlide((prev) => (prev < totalSlides ? prev + 1 : 1))}
-                  className="hover:text-[#D4AF87] transition-colors p-1"
-                  aria-label="Next slide"
-                >
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
+                <span className="inline-block ml-4 sm:ml-6 mt-1 text-[#E5C9A6]">Brighter Future</span>
               </div>
             </div>
           </div>

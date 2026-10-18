@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useStore } from '../context/StoreContext';
 import { LENS_PACKAGES } from '../data/initialData';
-import { X, Check, Calculator, Layers, ShoppingBag } from 'lucide-react';
+import { X, Check, Calculator, Layers, ShoppingBag, Sparkles } from 'lucide-react';
 
 export default function LensCalculator() {
   const { isLensCalcOpen, setIsLensCalcOpen, addToCart, selectedTryOnProduct, showToast } = useStore();
 
   const [prescriptionType, setPrescriptionType] = useState('single');
-  const [selectedLensIndex, setSelectedLensIndex] = useState(LENS_PACKAGES[1]); // Blue cut default
+  const [selectedLensIndex, setSelectedLensIndex] = useState(LENS_PACKAGES[1] || LENS_PACKAGES[0]); // Blue cut default
   const [spherePower, setSpherePower] = useState('-1.50');
   const [coatingOption] = useState('arc');
 
@@ -38,19 +38,22 @@ export default function LensCalculator() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-6 bg-slate-900/60 backdrop-blur-md animate-fade-in overflow-y-auto">
-      <div className="relative w-full max-w-3xl bg-white border border-sky-100 rounded-3xl shadow-2xl overflow-hidden my-auto flex flex-col max-h-[92vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-6 bg-black/85 backdrop-blur-md animate-fade-in overflow-y-auto">
+      <div className="relative w-full max-w-3xl bg-[#141417] text-zinc-100 border border-[#27272A] rounded-2xl shadow-2xl overflow-hidden my-auto flex flex-col max-h-[92vh]">
         {/* Header */}
-        <div className="px-6 py-4 border-b border-sky-100 flex items-center justify-between bg-gradient-to-r from-sky-50/70 via-white to-amber-50/50">
+        <div className="px-6 py-5 border-b border-[#27272A] flex items-center justify-between bg-[#121214]">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-sky-50 border border-sky-200 flex items-center justify-center text-sky-600 shadow-2xs">
+            <div className="w-10 h-10 rounded-xl bg-[#18181B] border border-[#D4AF87]/40 flex items-center justify-center text-[#D4AF87] shadow-md">
               <Calculator className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-slate-900 font-heading">
+              <span className="text-[#D4AF87] uppercase text-[10px] font-semibold tracking-[0.25em] block">
+                PRECISION LENS CONFIGURATOR
+              </span>
+              <h3 className="font-serif-luxury text-lg text-[#FAF7F0]">
                 Smart Lens & Prescription Calculator
               </h3>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-zinc-400">
                 Transparent lens pricing, thickness simulator & coating selector
               </p>
             </div>
@@ -58,9 +61,9 @@ export default function LensCalculator() {
 
           <button
             onClick={() => setIsLensCalcOpen(false)}
-            className="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-xl transition"
+            className="p-2 text-zinc-400 hover:text-white hover:bg-[#18181B] rounded-xl transition cursor-pointer"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
@@ -68,7 +71,7 @@ export default function LensCalculator() {
         <div className="p-6 overflow-y-auto space-y-6">
           {/* Step 1: Prescription Type */}
           <div>
-            <label className="text-xs font-bold text-slate-700 block mb-2">
+            <label className="text-xs font-semibold text-zinc-300 block mb-2.5">
               1. Select Vision Type:
             </label>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
@@ -81,23 +84,23 @@ export default function LensCalculator() {
                 <button
                   key={item.id}
                   onClick={() => setPrescriptionType(item.id)}
-                  className={`p-3 rounded-2xl border text-left transition ${
+                  className={`p-3 rounded-xl border text-left transition cursor-pointer ${
                     prescriptionType === item.id
-                      ? 'bg-sky-50 border-sky-400 ring-1 ring-sky-300 shadow-xs'
-                      : 'bg-white border-slate-200 text-slate-600 hover:border-sky-200'
+                      ? 'bg-[#18181B] border-[#D4AF87] ring-1 ring-[#D4AF87] shadow-md'
+                      : 'bg-[#121214] border-[#27272A] text-zinc-300 hover:border-[#D4AF87]/50'
                   }`}
                 >
-                  <div className="text-xs font-extrabold text-slate-900">{item.label}</div>
-                  <div className="text-[10px] text-slate-500 mt-1">{item.sub}</div>
+                  <div className="text-xs font-bold text-[#FAF7F0]">{item.label}</div>
+                  <div className="text-[10px] text-zinc-500 mt-1">{item.sub}</div>
                 </button>
               ))}
             </div>
           </div>
 
           {/* Step 2: Estimated Power for thickness simulation */}
-          <div className="bg-sky-50/60 p-4 rounded-2xl border border-sky-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="bg-[#18181B] p-4 rounded-xl border border-[#27272A] flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="w-full sm:w-auto">
-              <span className="text-xs font-bold text-slate-700 block mb-1">
+              <span className="text-xs font-semibold text-zinc-300 block mb-1.5">
                 2. Enter Approximate Diopter (Sphere):
               </span>
               <div className="flex items-center gap-2">
@@ -106,20 +109,20 @@ export default function LensCalculator() {
                   value={spherePower}
                   onChange={(e) => setSpherePower(e.target.value)}
                   placeholder="-1.50"
-                  className="w-24 bg-white border border-slate-200 px-3 py-1.5 rounded-xl text-slate-900 font-mono text-sm text-center shadow-2xs font-bold"
+                  className="w-24 bg-[#121214] border border-[#27272A] px-3 py-1.5 rounded-lg text-[#D4AF87] font-mono text-sm text-center font-bold focus:outline-none focus:border-[#D4AF87]"
                 />
-                <span className="text-xs text-slate-500 font-medium">Diopters (OD/OS)</span>
+                <span className="text-xs text-zinc-400 font-medium">Diopters (OD/OS)</span>
               </div>
             </div>
 
             {/* Thickness Gauge Indicator */}
-            <div className="w-full sm:w-auto flex items-center gap-3 bg-white px-4 py-2.5 rounded-2xl border border-sky-200 shadow-xs">
-              <Layers className="w-5 h-5 text-sky-600" />
+            <div className="w-full sm:w-auto flex items-center gap-3 bg-[#121214] px-4 py-2.5 rounded-xl border border-[#27272A]">
+              <Layers className="w-5 h-5 text-[#D4AF87]" />
               <div>
-                <div className="text-[11px] text-slate-500">Simulated Edge Thickness:</div>
-                <div className="text-sm font-black text-slate-900 font-mono">
+                <div className="text-[11px] text-zinc-400">Simulated Edge Thickness:</div>
+                <div className="text-sm font-bold text-[#FAF7F0] font-mono">
                   ~{simulatedEdgeMm} mm{' '}
-                  <span className="text-[10px] text-sky-700 font-bold">
+                  <span className="text-[10px] text-[#D4AF87]">
                     ({selectedLensIndex.material})
                   </span>
                 </div>
@@ -129,7 +132,7 @@ export default function LensCalculator() {
 
           {/* Step 3: Lens Packages */}
           <div>
-            <label className="text-xs font-bold text-slate-700 block mb-2">
+            <label className="text-xs font-semibold text-zinc-300 block mb-2.5">
               3. Choose Lens Index & Coating Package:
             </label>
             <div className="space-y-2.5">
@@ -137,38 +140,38 @@ export default function LensCalculator() {
                 <div
                   key={pkg.id}
                   onClick={() => setSelectedLensIndex(pkg)}
-                  className={`p-4 rounded-2xl border cursor-pointer transition flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
+                  className={`p-4 rounded-xl border cursor-pointer transition flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
                     selectedLensIndex.id === pkg.id
-                      ? 'bg-gradient-to-r from-sky-50/90 to-amber-50/40 border-sky-300 ring-1 ring-sky-300 shadow-xs'
-                      : 'bg-white border-slate-200 hover:border-sky-200'
+                      ? 'bg-[#18181B] border-[#D4AF87] ring-1 ring-[#D4AF87] shadow-md'
+                      : 'bg-[#121214] border-[#27272A] hover:border-[#D4AF87]/50'
                   }`}
                 >
                   <div>
                     <div className="flex items-center gap-2">
-                      <h4 className="text-sm font-extrabold text-slate-900">{pkg.name}</h4>
-                      <span className="text-[10px] font-bold bg-amber-50 text-amber-800 px-2.5 py-0.5 rounded-full border border-amber-200 shadow-2xs">
+                      <h4 className="font-serif-luxury text-sm text-[#FAF7F0]">{pkg.name}</h4>
+                      <span className="text-[10px] font-semibold bg-[#121214] text-[#D4AF87] px-2.5 py-0.5 rounded-full border border-[#D4AF87]/40 uppercase tracking-wider">
                         {pkg.badge}
                       </span>
                     </div>
-                    <p className="text-xs text-slate-500 mt-0.5 font-medium">{pkg.material} • {pkg.suitableFor}</p>
+                    <p className="text-xs text-zinc-400 mt-0.5">{pkg.material} • {pkg.suitableFor}</p>
                     <div className="flex flex-wrap gap-2 mt-2">
                       {pkg.features.map((feat) => (
-                        <span key={feat} className="text-[10px] text-slate-700 bg-white px-2 py-0.5 rounded-md border border-slate-200 shadow-2xs">
+                        <span key={feat} className="text-[10px] text-zinc-300 bg-[#121214] px-2 py-0.5 rounded-md border border-[#27272A]">
                           ✓ {feat}
                         </span>
                       ))}
                     </div>
                   </div>
 
-                  <div className="text-right sm:pl-4 sm:border-l sm:border-slate-200 flex sm:flex-col items-center sm:items-end justify-between">
+                  <div className="text-right sm:pl-4 sm:border-l sm:border-[#27272A] flex sm:flex-col items-center sm:items-end justify-between">
                     <div>
-                      <span className="text-base font-black text-sky-700 font-heading">
+                      <span className="text-base font-bold text-[#D4AF87]">
                         +₹{pkg.price.toLocaleString('en-IN')}
                       </span>
-                      <div className="text-[10px] text-slate-400">per pair</div>
+                      <div className="text-[10px] text-zinc-500">per pair</div>
                     </div>
                     <div className={`w-5 h-5 rounded-full flex items-center justify-center mt-2 border ${
-                      selectedLensIndex.id === pkg.id ? 'bg-sky-600 border-sky-600 text-white shadow-2xs' : 'border-slate-300'
+                      selectedLensIndex.id === pkg.id ? 'bg-[#D4AF87] border-[#D4AF87] text-[#090909]' : 'border-zinc-700'
                     }`}>
                       {selectedLensIndex.id === pkg.id && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                     </div>
@@ -180,14 +183,14 @@ export default function LensCalculator() {
         </div>
 
         {/* Footer with Summary Price */}
-        <div className="p-5 border-t border-sky-100 bg-slate-50/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="p-5 border-t border-[#27272A] bg-[#121214] flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-left w-full sm:w-auto">
-            <div className="text-xs text-slate-500">
+            <div className="text-xs text-zinc-400">
               Estimated Total (Frame + Custom Lenses):
             </div>
-            <div className="text-2xl font-black text-slate-900 font-heading flex items-baseline gap-2">
-              <span>₹{totalEstimate.toLocaleString('en-IN')}</span>
-              <span className="text-xs font-bold text-amber-700">
+            <div className="text-2xl font-serif-luxury text-[#FAF7F0] flex items-baseline gap-2">
+              <span className="text-[#D4AF87] font-bold">₹{totalEstimate.toLocaleString('en-IN')}</span>
+              <span className="text-xs font-semibold text-zinc-400">
                 (Includes 1-Year Coating Warranty)
               </span>
             </div>
@@ -195,7 +198,7 @@ export default function LensCalculator() {
 
           <button
             onClick={handleApplyToCart}
-            className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-sky-600 to-sky-700 hover:from-sky-500 hover:to-sky-600 text-white font-bold rounded-xl transition flex items-center justify-center gap-2 shadow-md glow-glacier"
+            className="w-full sm:w-auto px-6 py-3 bg-[#D4AF87] hover:bg-[#C59F77] text-[#090909] font-bold text-xs uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2 shadow-lg cursor-pointer"
           >
             <ShoppingBag className="w-4 h-4" />
             Apply Lenses to Selection

@@ -6,7 +6,8 @@ import {
   Calendar,
   CheckCircle2,
   MapPin,
-  Printer
+  Printer,
+  Sparkles
 } from 'lucide-react';
 
 const TIME_SLOTS = [
@@ -25,7 +26,7 @@ export default function AppointmentModal() {
 
   const [service, setService] = useState(activeAppointmentService || 'Computerized Eye Testing');
   const [date, setDate] = useState(() => {
-    return '2026-10-14';
+    return '2026-10-18';
   });
   const [timeSlot, setTimeSlot] = useState(TIME_SLOTS[0]);
   const [patientName, setPatientName] = useState('');
@@ -64,19 +65,22 @@ export default function AppointmentModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-6 bg-slate-900/60 backdrop-blur-md animate-fade-in overflow-y-auto">
-      <div className="relative w-full max-w-xl bg-white border border-sky-100 rounded-3xl shadow-2xl overflow-hidden my-auto flex flex-col max-h-[92vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-6 bg-black/85 backdrop-blur-md animate-fade-in overflow-y-auto">
+      <div className="relative w-full max-w-xl bg-[#141417] border border-[#27272A] rounded-2xl shadow-2xl overflow-hidden my-auto flex flex-col max-h-[92vh] text-zinc-100">
         {/* Header */}
-        <div className="px-6 py-4 border-b border-sky-100 flex items-center justify-between bg-gradient-to-r from-sky-50/70 via-white to-amber-50/50">
+        <div className="px-6 py-5 border-b border-[#27272A] flex items-center justify-between bg-[#121214]">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-sky-50 border border-sky-200 flex items-center justify-center text-sky-600 shadow-2xs">
+            <div className="w-10 h-10 rounded-xl bg-[#18181B] border border-[#D4AF87]/40 flex items-center justify-center text-[#D4AF87] shadow-md">
               <Calendar className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-slate-900 font-heading">
+              <span className="text-[#D4AF87] uppercase text-[10px] font-semibold tracking-[0.25em] block">
+                FLAGSHIP CLINIC APPOINTMENT
+              </span>
+              <h3 className="font-serif-luxury text-lg text-[#FAF7F0]">
                 Book Eye Exam at Anand Opticals
               </h3>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-zinc-400">
                 Salem Main Road, Kallakurichi • Dr. S. Anand (FIACLE)
               </p>
             </div>
@@ -84,9 +88,9 @@ export default function AppointmentModal() {
 
           <button
             onClick={handleClose}
-            className="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-xl transition"
+            className="p-2 text-zinc-400 hover:text-white hover:bg-[#18181B] rounded-xl transition cursor-pointer"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
@@ -96,13 +100,13 @@ export default function AppointmentModal() {
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Service Select */}
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">
+                <label className="text-xs font-semibold text-zinc-300 block mb-1.5">
                   Select Eye Care Service:
                 </label>
                 <select
                   value={service}
                   onChange={(e) => setService(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-sky-500 font-medium"
+                  className="w-full bg-[#18181B] border border-[#27272A] rounded-xl px-3.5 py-2.5 text-zinc-100 text-sm focus:outline-none focus:border-[#D4AF87]"
                 >
                   <option value="Computerized Eye Testing">Computerized Objective Eye Testing (Refractometer)</option>
                   <option value="Digital Progressive Lens Consultation">Digital Progressive Lens Consultation (No-Line)</option>
@@ -116,25 +120,25 @@ export default function AppointmentModal() {
               {/* Date & Time Slot Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="text-xs font-bold text-slate-700 block mb-1.5">
+                  <label className="text-xs font-semibold text-zinc-300 block mb-1.5">
                     Appointment Date:
                   </label>
                   <input
                     type="date"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-sky-500 font-mono"
+                    className="w-full bg-[#18181B] border border-[#27272A] rounded-xl px-3.5 py-2.5 text-zinc-100 text-sm focus:outline-none focus:border-[#D4AF87] font-mono"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-bold text-slate-700 block mb-1.5">
+                  <label className="text-xs font-semibold text-zinc-300 block mb-1.5">
                     Time Slot:
                   </label>
                   <select
                     value={timeSlot}
                     onChange={(e) => setTimeSlot(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-sky-500 font-medium"
+                    className="w-full bg-[#18181B] border border-[#27272A] rounded-xl px-3.5 py-2.5 text-zinc-100 text-sm focus:outline-none focus:border-[#D4AF87]"
                   >
                     {TIME_SLOTS.map((t) => (
                       <option key={t} value={t}>{t}</option>
@@ -146,7 +150,7 @@ export default function AppointmentModal() {
               {/* Patient Name & Mobile */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="text-xs font-bold text-slate-700 block mb-1.5">
+                  <label className="text-xs font-semibold text-zinc-300 block mb-1.5">
                     Patient Full Name: *
                   </label>
                   <input
@@ -155,12 +159,12 @@ export default function AppointmentModal() {
                     placeholder="e.g. S. Ramanathan"
                     value={patientName}
                     onChange={(e) => setPatientName(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-sky-500 font-medium"
+                    className="w-full bg-[#18181B] border border-[#27272A] rounded-xl px-3.5 py-2.5 text-zinc-100 text-sm focus:outline-none focus:border-[#D4AF87]"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-bold text-slate-700 block mb-1.5">
+                  <label className="text-xs font-semibold text-zinc-300 block mb-1.5">
                     Mobile Number (for SMS & WhatsApp Token): *
                   </label>
                   <input
@@ -169,7 +173,7 @@ export default function AppointmentModal() {
                     placeholder="+91 94432 00000"
                     value={mobile}
                     onChange={(e) => setMobile(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-sky-500 font-mono"
+                    className="w-full bg-[#18181B] border border-[#27272A] rounded-xl px-3.5 py-2.5 text-zinc-100 text-sm focus:outline-none focus:border-[#D4AF87] font-mono"
                   />
                 </div>
               </div>
@@ -177,7 +181,7 @@ export default function AppointmentModal() {
               {/* Age and Gender */}
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-xs font-bold text-slate-700 block mb-1.5">
+                  <label className="text-xs font-semibold text-zinc-300 block mb-1.5">
                     Age:
                   </label>
                   <input
@@ -187,18 +191,18 @@ export default function AppointmentModal() {
                     placeholder="e.g. 42"
                     value={age}
                     onChange={(e) => setAge(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-sky-500"
+                    className="w-full bg-[#18181B] border border-[#27272A] rounded-xl px-3.5 py-2.5 text-zinc-100 text-sm focus:outline-none focus:border-[#D4AF87]"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-bold text-slate-700 block mb-1.5">
+                  <label className="text-xs font-semibold text-zinc-300 block mb-1.5">
                     Gender:
                   </label>
                   <select
                     value={gender}
                     onChange={(e) => setGender(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-sky-500 font-medium"
+                    className="w-full bg-[#18181B] border border-[#27272A] rounded-xl px-3.5 py-2.5 text-zinc-100 text-sm focus:outline-none focus:border-[#D4AF87]"
                   >
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
@@ -209,22 +213,22 @@ export default function AppointmentModal() {
 
               {/* Symptoms / Notes */}
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">
+                <label className="text-xs font-semibold text-zinc-300 block mb-1.5">
                   Symptoms or Remarks (Optional):
                 </label>
                 <textarea
                   rows="2"
-                  placeholder="e.g., headache while reading, blurred streetlights at night, computer eye dryness"
+                  placeholder="e.g., eye fatigue while reading, night glare while driving, digital screen strain"
                   value={symptoms}
                   onChange={(e) => setSymptoms(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900 text-xs focus:outline-none focus:border-sky-500"
+                  className="w-full bg-[#18181B] border border-[#27272A] rounded-xl p-3 text-zinc-100 text-xs focus:outline-none focus:border-[#D4AF87] resize-none"
                 />
               </div>
 
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full py-3.5 bg-gradient-to-r from-sky-600 to-sky-700 hover:from-sky-500 hover:to-sky-600 text-white font-bold rounded-xl transition flex items-center justify-center gap-2 shadow-md glow-glacier mt-2"
+                className="w-full py-3.5 bg-[#D4AF87] hover:bg-[#C59F77] text-[#090909] font-bold text-xs uppercase tracking-widest rounded-xl transition flex items-center justify-center gap-2 shadow-lg mt-2 cursor-pointer"
               >
                 <CheckCircle2 className="w-5 h-5" />
                 Confirm Appointment & Generate Token
@@ -232,42 +236,42 @@ export default function AppointmentModal() {
             </form>
           ) : (
             /* Confirmation Slip */
-            <div className="bg-sky-50/50 rounded-2xl p-6 border-2 border-sky-200 text-center space-y-4">
-              <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-300 flex items-center justify-center mx-auto shadow-2xs">
+            <div className="bg-[#18181B] rounded-xl p-6 border border-[#D4AF87]/40 text-center space-y-4">
+              <div className="w-16 h-16 rounded-full bg-[#121214] text-[#D4AF87] border border-[#D4AF87]/60 flex items-center justify-center mx-auto shadow-xl">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
 
               <div>
-                <span className="text-xs uppercase tracking-wider text-amber-700 font-bold">
-                  Appointment Confirmed!
+                <span className="text-[10px] uppercase tracking-[0.25em] text-[#D4AF87] font-semibold">
+                  APPOINTMENT CONFIRMED
                 </span>
-                <h4 className="text-2xl font-black text-slate-900 font-heading mt-1">
+                <h4 className="font-serif-luxury text-2xl text-[#FAF7F0] mt-1">
                   Token: {confirmedBooking.tokenNumber}
                 </h4>
-                <p className="text-xs text-slate-500 mt-0.5">
-                  Reference ID: <span className="font-mono text-slate-800 font-bold">{confirmedBooking.id}</span>
+                <p className="text-xs text-zinc-400 mt-0.5">
+                  Reference ID: <span className="font-mono text-[#D4AF87]">{confirmedBooking.id}</span>
                 </p>
               </div>
 
-              <div className="bg-white rounded-xl p-4 border border-sky-100 text-xs text-left space-y-2 shadow-xs">
+              <div className="bg-[#121214] rounded-xl p-4 border border-[#27272A] text-xs text-left space-y-2.5">
                 <div className="flex justify-between">
-                  <span className="text-slate-500">Patient:</span>
-                  <span className="font-bold text-slate-900">{confirmedBooking.patientName}</span>
+                  <span className="text-zinc-400">Patient:</span>
+                  <span className="font-semibold text-[#FAF7F0]">{confirmedBooking.patientName}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-500">Date & Slot:</span>
-                  <span className="font-bold text-sky-700">{confirmedBooking.date} at {confirmedBooking.timeSlot}</span>
+                  <span className="text-zinc-400">Date & Slot:</span>
+                  <span className="font-semibold text-[#D4AF87]">{confirmedBooking.date} at {confirmedBooking.timeSlot}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-500">Service:</span>
-                  <span className="text-slate-800 font-medium">{confirmedBooking.service}</span>
+                  <span className="text-zinc-400">Service:</span>
+                  <span className="text-zinc-200">{confirmedBooking.service}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-500">Doctor:</span>
-                  <span className="text-slate-800 font-medium">{BUSINESS_INFO.doctor.name} ({BUSINESS_INFO.doctor.qualifications})</span>
+                  <span className="text-zinc-400">Doctor:</span>
+                  <span className="text-zinc-200">{BUSINESS_INFO.doctor.name} ({BUSINESS_INFO.doctor.qualifications})</span>
                 </div>
-                <div className="pt-2 border-t border-slate-100 text-slate-600 flex items-start gap-1.5">
-                  <MapPin className="w-4 h-4 text-sky-600 shrink-0 mt-0.5" />
+                <div className="pt-2 border-t border-[#27272A] text-zinc-400 flex items-start gap-2">
+                  <MapPin className="w-4 h-4 text-[#D4AF87] shrink-0 mt-0.5" />
                   <span>Shop No. 14, Salem Main Road (Opp. Govt Hospital, Near New Bus Stand), Kallakurichi.</span>
                 </div>
               </div>
@@ -275,13 +279,13 @@ export default function AppointmentModal() {
               <div className="flex items-center justify-center gap-3 pt-2">
                 <button
                   onClick={() => window.print()}
-                  className="px-4 py-2 bg-white hover:bg-slate-50 text-slate-800 text-xs font-bold rounded-xl flex items-center gap-1.5 border border-slate-200 shadow-2xs"
+                  className="px-5 py-2.5 bg-[#121214] hover:bg-[#27272A] text-zinc-200 text-xs font-semibold rounded-xl flex items-center gap-2 border border-[#27272A] transition cursor-pointer"
                 >
-                  <Printer className="w-4 h-4 text-sky-600" /> Print Token Slip
+                  <Printer className="w-4 h-4 text-[#D4AF87]" /> Print Token Slip
                 </button>
                 <button
                   onClick={handleClose}
-                  className="px-6 py-2 bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold rounded-xl shadow-xs"
+                  className="px-8 py-2.5 bg-[#D4AF87] hover:bg-[#C59F77] text-[#090909] text-xs font-bold uppercase tracking-wider rounded-xl transition cursor-pointer shadow-md"
                 >
                   Done
                 </button>

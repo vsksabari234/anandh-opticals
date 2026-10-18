@@ -5,7 +5,9 @@ import {
   Eye,
   CheckCircle2,
   RotateCcw,
-  ArrowRight
+  ArrowRight,
+  Sparkles,
+  Clock
 } from 'lucide-react';
 
 const SNELLEN_LEVELS = [
@@ -58,7 +60,9 @@ export default function VisionTestModal() {
       showToast('Time for 20-20-20 rule! Look 20 feet away for 20 seconds. 🌿');
       setIsTimerRunning(false);
     }
-    return () => clearInterval(interval);
+    return () => {
+      if (interval) clearInterval(interval);
+    };
   }, [isTimerRunning, timerSeconds, showToast]);
 
   const nextSnellenQuestion = () => {
@@ -111,24 +115,24 @@ export default function VisionTestModal() {
   if (!isVisionTestOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-6 bg-slate-900/60 backdrop-blur-md animate-fade-in overflow-y-auto">
-      <div className="relative w-full max-w-4xl bg-white border border-sky-100 rounded-3xl shadow-2xl overflow-hidden my-auto flex flex-col max-h-[92vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-6 bg-black/85 backdrop-blur-md animate-fade-in overflow-y-auto">
+      <div className="relative w-full max-w-4xl bg-[#141417] text-zinc-100 border border-[#27272A] rounded-2xl shadow-2xl overflow-hidden my-auto flex flex-col max-h-[92vh]">
         {/* Header */}
-        <div className="px-6 py-4 border-b border-sky-100 flex items-center justify-between bg-gradient-to-r from-sky-50/70 via-white to-amber-50/50">
+        <div className="px-6 py-5 border-b border-[#27272A] flex items-center justify-between bg-[#121214]">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-sky-50 border border-sky-200 flex items-center justify-center text-sky-600 shadow-2xs">
+            <div className="w-10 h-10 rounded-xl bg-[#18181B] border border-[#D4AF87]/40 flex items-center justify-center text-[#D4AF87] shadow-md">
               <Eye className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-lg font-bold text-slate-900 font-heading">
+                <h3 className="font-serif-luxury text-lg text-[#FAF7F0]">
                   Digital Vision Screening Lab
                 </h3>
-                <span className="text-[11px] font-bold bg-amber-50 text-amber-800 border border-amber-300 px-2 py-0.5 rounded-full">
+                <span className="text-[10px] font-semibold bg-[#18181B] text-[#D4AF87] border border-[#D4AF87]/40 px-2 py-0.5 rounded-full uppercase tracking-wider">
                   Interactive Test Suite
                 </span>
               </div>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-zinc-400">
                 Self-evaluation tools designed by Dr. S. Anand (Senior Optometrist)
               </p>
             </div>
@@ -136,14 +140,14 @@ export default function VisionTestModal() {
 
           <button
             onClick={() => setIsVisionTestOpen(false)}
-            className="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-xl transition"
+            className="p-2 text-zinc-400 hover:text-white hover:bg-[#18181B] rounded-xl transition cursor-pointer"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex items-center border-b border-sky-100 bg-slate-50/60 px-6 gap-2 overflow-x-auto">
+        <div className="flex items-center border-b border-[#27272A] bg-[#121214] px-6 gap-2 overflow-x-auto">
           {[
             { id: 'acuity', label: '1. Visual Acuity (Snellen E)' },
             { id: 'astigmatism', label: '2. Astigmatism Fan Dial' },
@@ -153,10 +157,10 @@ export default function VisionTestModal() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`py-3 px-4 text-xs font-bold border-b-2 transition whitespace-nowrap ${
+              className={`py-3 px-4 text-xs font-semibold border-b-2 transition whitespace-nowrap cursor-pointer ${
                 activeTab === tab.id
-                  ? 'border-sky-600 text-sky-800 bg-sky-50'
-                  : 'border-transparent text-slate-500 hover:text-slate-900'
+                  ? 'border-[#D4AF87] text-[#D4AF87] bg-[#18181B]'
+                  : 'border-transparent text-zinc-400 hover:text-zinc-200'
               }`}
             >
               {tab.label}
@@ -169,32 +173,32 @@ export default function VisionTestModal() {
           {/* TAB 1: VISUAL ACUITY */}
           {activeTab === 'acuity' && (
             <div className="space-y-6">
-              <div className="bg-sky-50/60 p-4 rounded-2xl border border-sky-100 flex items-start justify-between gap-4">
+              <div className="bg-[#18181B] p-4 rounded-xl border border-[#27272A] flex items-start justify-between gap-4">
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900">How to test:</h4>
-                  <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                  <h4 className="text-sm font-semibold text-[#FAF7F0]">How to test:</h4>
+                  <p className="text-xs text-zinc-400 mt-1 leading-relaxed font-sans">
                     1. Sit approximately <strong>arm’s length (60cm)</strong> away from your screen.<br />
                     2. Cover your Left Eye with your palm (do not press). Test your Right Eye first.<br />
                     3. Observe the tumbling letter "E" below and click which way the prongs point.
                   </p>
                 </div>
                 <div className="text-right">
-                  <span className="text-[11px] font-mono text-sky-800 bg-white border border-sky-200 px-2.5 py-1 rounded-md font-bold shadow-2xs">
+                  <span className="text-[11px] font-mono text-[#D4AF87] bg-black border border-[#D4AF87]/40 px-2.5 py-1 rounded-md font-bold shadow-sm">
                     Level {acuityStep + 1} of {SNELLEN_LEVELS.length}
                   </span>
                 </div>
               </div>
 
               {!acuityFinished ? (
-                <div className="flex flex-col items-center justify-center p-8 bg-slate-50 rounded-2xl border border-sky-100">
-                  <div className="text-xs text-slate-500 mb-6 font-medium">
-                    Acuity Tier: <span className="text-sky-700 font-bold">{SNELLEN_LEVELS[acuityStep].level}</span> ({SNELLEN_LEVELS[acuityStep].label})
+                <div className="flex flex-col items-center justify-center p-8 bg-[#121214] rounded-xl border border-[#27272A]">
+                  <div className="text-xs text-zinc-400 mb-6 font-medium">
+                    Acuity Tier: <span className="text-[#D4AF87] font-bold">{SNELLEN_LEVELS[acuityStep].level}</span> ({SNELLEN_LEVELS[acuityStep].label})
                   </div>
 
-                  {/* High Contrast Black Letter on Pristine White for Optical Sharpness */}
-                  <div className="h-32 w-32 bg-white rounded-2xl border border-sky-100 shadow-sm flex items-center justify-center">
+                  {/* High Contrast Black Letter on Crisp Off-White Display for Optical Sharpness */}
+                  <div className="h-32 w-32 bg-[#FAF7F0] rounded-xl border border-zinc-300 shadow-md flex items-center justify-center">
                     <div
-                      className="font-mono font-black text-slate-950 select-none transition-transform duration-200"
+                      className="font-mono font-black text-black select-none transition-transform duration-200"
                       style={{
                         fontSize: `${SNELLEN_LEVELS[acuityStep].sizePx}px`,
                         lineHeight: 1,
@@ -212,56 +216,54 @@ export default function VisionTestModal() {
                     </div>
                   </div>
 
-                  <p className="text-xs text-slate-600 mt-6 mb-3 font-semibold">Which direction are the prongs pointing?</p>
+                  <p className="text-xs text-zinc-300 mt-6 mb-3 font-semibold">Which direction are the prongs pointing?</p>
 
                   {/* Direction Buttons */}
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full max-w-sm">
                     {[
                       { dir: 'up', label: '▲ UP' },
                       { dir: 'down', label: '▼ DOWN' },
-                      { dir: 'left', label: '◀ LEFT' },
-                      { dir: 'right', label: '▶ RIGHT' }
-                    ].map((btn) => (
+                      { dir: 'left', label: '◄ LEFT' },
+                      { dir: 'right', label: '► RIGHT' }
+                    ].map((item) => (
                       <button
-                        key={btn.dir}
-                        onClick={() => handleAcuityAnswer(btn.dir)}
-                        className="py-3 px-4 bg-white hover:bg-sky-600 text-slate-800 hover:text-white font-bold text-xs rounded-xl border border-slate-200 transition shadow-2xs"
+                        key={item.dir}
+                        onClick={() => handleAcuityAnswer(item.dir)}
+                        className="py-3 px-4 bg-[#18181B] hover:bg-[#D4AF87] hover:text-[#090909] text-zinc-200 border border-[#27272A] font-bold text-xs rounded-xl transition cursor-pointer shadow-sm"
                       >
-                        {btn.label}
+                        {item.label}
                       </button>
                     ))}
                   </div>
                 </div>
               ) : (
-                <div className="bg-sky-50/50 rounded-2xl p-6 border-2 border-sky-200 text-center space-y-4">
-                  <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-300 flex items-center justify-center mx-auto shadow-2xs">
+                <div className="text-center py-8 px-4 bg-[#18181B] rounded-xl border border-[#D4AF87]/40 space-y-4">
+                  <div className="w-16 h-16 rounded-full bg-[#121214] text-[#D4AF87] border border-[#D4AF87]/60 flex items-center justify-center mx-auto shadow-md">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
-                  <h4 className="text-xl font-black text-slate-900 font-heading">
-                    Acuity Screening Complete
+                  <h4 className="font-serif-luxury text-2xl text-[#FAF7F0]">
+                    Visual Acuity Score: {acuityScore} / {SNELLEN_LEVELS.length}
                   </h4>
-                  <p className="text-sm text-slate-600 max-w-md mx-auto">
-                    You scored <strong>{acuityScore} / {SNELLEN_LEVELS.length}</strong> correct.
+                  <p className="text-xs text-zinc-300 max-w-md mx-auto leading-relaxed font-sans">
                     {acuityScore >= 4
-                      ? ' Your distance visual acuity appears sharp on this screen calibration.'
-                      : ' You may have mild refractive error or screen fatigue. A clinical autorefractor exam is advised.'}
+                      ? 'Excellent standard visual acuity! You appear to possess 20/20 vision in distance focus.'
+                      : 'Mild distance blur detected. We recommend booking a comprehensive in-clinic auto-refraction test with Dr. S. Anand.'}
                   </p>
-
-                  <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
+                  <div className="flex items-center justify-center gap-3 pt-2">
                     <button
                       onClick={resetAcuity}
-                      className="px-4 py-2 bg-white hover:bg-slate-50 text-slate-700 rounded-xl text-xs font-bold flex items-center gap-1.5 border border-slate-200 shadow-2xs"
+                      className="px-5 py-2.5 bg-[#121214] hover:bg-[#27272A] text-zinc-200 border border-[#27272A] text-xs font-semibold rounded-xl transition cursor-pointer"
                     >
-                      <RotateCcw className="w-3.5 h-3.5" /> Retest Left Eye
+                      Retake Test
                     </button>
                     <button
                       onClick={() => {
                         setIsVisionTestOpen(false);
                         setIsAppointmentModalOpen(true);
                       }}
-                      className="px-5 py-2.5 bg-gradient-to-r from-sky-600 to-sky-700 hover:from-sky-500 hover:to-sky-600 text-white font-bold rounded-xl text-xs flex items-center gap-1.5 shadow-md glow-glacier"
+                      className="px-6 py-2.5 bg-[#D4AF87] hover:bg-[#C59F77] text-[#090909] text-xs font-bold uppercase tracking-wider rounded-xl shadow-md transition cursor-pointer"
                     >
-                      Book Full Exam at Anand Opticals <ArrowRight className="w-3.5 h-3.5" />
+                      Book Full Clinic Exam
                     </button>
                   </div>
                 </div>
@@ -269,71 +271,71 @@ export default function VisionTestModal() {
             </div>
           )}
 
-          {/* TAB 2: ASTIGMATISM FAN */}
+          {/* TAB 2: ASTIGMATISM FAN DIAL */}
           {activeTab === 'astigmatism' && (
             <div className="space-y-6">
-              <div className="bg-sky-50/60 p-4 rounded-2xl border border-sky-100 text-xs text-slate-600 leading-relaxed font-medium">
-                <strong>Astigmatism Dial Test:</strong> Look at the center fixation cross of the sunburst wheel below. Are all lines equally sharp and black, or do some spokes appear significantly darker or bolder than the rest?
+              <div className="bg-[#18181B] p-4 rounded-xl border border-[#27272A] text-xs text-zinc-300 leading-relaxed font-sans">
+                <strong>How to test:</strong> Cover your left eye with your hand. Look at the radial sunburst lines below. Do all lines appear equally sharp and dark, or do some lines look darker, bolder, or doubled?
               </div>
 
-              <div className="flex flex-col items-center justify-center p-6 bg-slate-50 rounded-2xl border border-sky-100">
-                {/* SVG Sunburst Dial on White */}
-                <svg viewBox="0 0 240 240" className="w-64 h-64 select-none bg-white rounded-full p-2 border border-slate-200 shadow-sm">
-                  <circle cx="120" cy="120" r="110" fill="#ffffff" stroke="#e2e8f0" strokeWidth="2" />
-                  {Array.from({ length: 18 }).map((_, i) => {
-                    const angle = i * 10;
-                    return (
-                      <line
-                        key={i}
-                        x1="120"
-                        y1="120"
-                        x2={120 + 95 * Math.cos((angle * Math.PI) / 180)}
-                        y2={120 + 95 * Math.sin((angle * Math.PI) / 180)}
-                        stroke="#0f172a"
-                        strokeWidth="2.5"
-                      />
-                    );
-                  })}
-                  <circle cx="120" cy="120" r="7" fill="#0284c7" />
-                  <circle cx="120" cy="120" r="2" fill="#ffffff" />
-                </svg>
+              <div className="flex flex-col items-center justify-center p-8 bg-[#121214] rounded-xl border border-[#27272A]">
+                {/* SVG Radial Fan Dial */}
+                <div className="p-4 bg-black rounded-xl border border-zinc-800 shadow-inner">
+                  <svg className="w-64 h-64" viewBox="0 0 200 200">
+                    <circle cx="100" cy="100" r="92" fill="#090909" stroke="#27272A" strokeWidth="2" />
+                    {[...Array(12)].map((_, i) => {
+                      const angle = (i * 30 * Math.PI) / 180;
+                      const x1 = 100 + 15 * Math.cos(angle);
+                      const y1 = 100 + 15 * Math.sin(angle);
+                      const x2 = 100 + 85 * Math.cos(angle);
+                      const y2 = 100 + 85 * Math.sin(angle);
+                      return (
+                        <line
+                          key={i}
+                          x1={x1}
+                          y1={y1}
+                          x2={x2}
+                          y2={y2}
+                          stroke="#FAF7F0"
+                          strokeWidth={i % 3 === 0 ? "3.5" : "1.8"}
+                        />
+                      );
+                    })}
+                    <circle cx="100" cy="100" r="10" fill="#D4AF87" />
+                  </svg>
+                </div>
 
-                <p className="text-xs text-slate-600 mt-4 mb-3 font-semibold">How do the radiant spokes appear to your eye?</p>
+                <p className="text-xs text-zinc-300 mt-6 mb-3 font-semibold">How do the lines appear to you?</p>
 
-                <div className="flex items-center gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-md">
                   <button
                     onClick={() => setAstigmatismAnswer('uniform')}
-                    className={`py-2.5 px-4 rounded-xl text-xs font-bold border transition ${
+                    className={`p-3 rounded-xl border text-xs font-semibold transition cursor-pointer ${
                       astigmatismAnswer === 'uniform'
-                        ? 'bg-emerald-50 border-emerald-400 text-emerald-800 shadow-xs'
-                        : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-100'
+                        ? 'bg-[#D4AF87] text-[#090909] border-[#D4AF87]'
+                        : 'bg-[#18181B] hover:bg-[#27272A] text-zinc-200 border-[#27272A]'
                     }`}
                   >
-                    All Lines Equal & Uniform
+                    All lines are equally sharp & dark
                   </button>
-
                   <button
-                    onClick={() => setAstigmatismAnswer('uneven')}
-                    className={`py-2.5 px-4 rounded-xl text-xs font-bold border transition ${
-                      astigmatismAnswer === 'uneven'
-                        ? 'bg-amber-50 border-amber-400 text-amber-800 shadow-xs'
-                        : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-100'
+                    onClick={() => setAstigmatismAnswer('distorted')}
+                    className={`p-3 rounded-xl border text-xs font-semibold transition cursor-pointer ${
+                      astigmatismAnswer === 'distorted'
+                        ? 'bg-[#D4AF87] text-[#090909] border-[#D4AF87]'
+                        : 'bg-[#18181B] hover:bg-[#27272A] text-zinc-200 border-[#27272A]'
                     }`}
                   >
-                    Some Lines Look Bolder / Blurred
+                    Some lines are darker / blurrier
                   </button>
                 </div>
 
                 {astigmatismAnswer && (
-                  <div className="mt-4 p-4 rounded-xl max-w-md w-full text-xs text-center border animate-fade-in bg-white border-slate-200 shadow-xs">
+                  <div className="mt-4 p-4 rounded-xl bg-[#18181B] border border-[#27272A] text-xs text-zinc-300 max-w-md text-center">
                     {astigmatismAnswer === 'uniform' ? (
-                      <div className="text-emerald-700 font-medium">
-                        ✓ <strong>Normal Meridian Symmetry:</strong> No pronounced sign of uncorrected astigmatism on this screening.
-                      </div>
+                      <span className="text-emerald-400 font-medium">✓ Normal corneal symmetry indicated. No apparent signs of significant uncorrected astigmatism.</span>
                     ) : (
-                      <div className="text-amber-800 font-medium">
-                        ⚠️ <strong>Possible Astigmatism (Cylinder):</strong> An uneven meridian pattern suggests the cornea may be slightly curved like a rugby ball instead of a football. Dr. S. Anand can measure your exact axis with a keratometer.
-                      </div>
+                      <span className="text-amber-400 font-medium">⚠ Possible cylindrical astigmatism detected. Toric spectacle or contact lenses are recommended for clear night driving.</span>
                     )}
                   </div>
                 )}
@@ -341,62 +343,55 @@ export default function VisionTestModal() {
             </div>
           )}
 
-          {/* TAB 3: COLOR VISION */}
+          {/* TAB 3: ISHIHARA COLOR TEST */}
           {activeTab === 'color' && (
             <div className="space-y-6">
-              <div className="bg-sky-50/60 p-4 rounded-2xl border border-sky-100 text-xs text-slate-600 leading-relaxed font-medium">
-                <strong>Ishihara Pseudoisochromatic Color Plate:</strong> Identify the hidden number disguised in the mosaic dot pattern.
+              <div className="bg-[#18181B] p-4 rounded-xl border border-[#27272A] text-xs text-zinc-300 leading-relaxed font-sans">
+                <strong>Color Vision Check:</strong> Enter the number you perceive embedded inside the pseudo-isochromatic dot mosaic.
               </div>
 
               {!colorFinished ? (
-                <div className="flex flex-col items-center justify-center p-6 bg-slate-50 rounded-2xl border border-sky-100">
-                  <div className="text-xs text-slate-500 mb-4 font-bold">
+                <div className="flex flex-col items-center justify-center p-8 bg-[#121214] rounded-xl border border-[#27272A]">
+                  <div className="text-xs text-zinc-400 mb-4">
                     Plate {colorStep + 1} of {ISHIHARA_TESTS.length}: {ISHIHARA_TESTS[colorStep].description}
                   </div>
 
-                  {/* Simulated Ishihara Dot Plate */}
-                  <div className="relative w-56 h-56 rounded-full overflow-hidden bg-emerald-900 border-4 border-white flex items-center justify-center shadow-md">
-                    <div className="absolute inset-0 opacity-40 bg-[radial-gradient(#34d399_1px,transparent_1px)] [background-size:8px_8px]" />
-                    <div className="absolute inset-0 opacity-30 bg-[radial-gradient(#fb7185_2px,transparent_2px)] [background-size:12px_12px]" />
-                    <span className="font-heading font-black text-6xl tracking-wider text-rose-300 drop-shadow-md select-none">
+                  <div className="w-56 h-56 rounded-full bg-zinc-900 border-4 border-[#27272A] flex items-center justify-center select-none shadow-inner">
+                    <span className="text-6xl font-black tracking-widest text-[#D4AF87] font-mono">
                       {ISHIHARA_TESTS[colorStep].plateNumber}
                     </span>
                   </div>
 
-                  <form onSubmit={handleColorSubmit} className="mt-6 flex items-center gap-2">
+                  <form onSubmit={handleColorSubmit} className="mt-6 flex items-center gap-2 w-full max-w-xs">
                     <input
                       type="text"
-                      maxLength="3"
+                      placeholder="Enter number..."
                       value={colorInput}
                       onChange={(e) => setColorInput(e.target.value)}
-                      placeholder="Number"
-                      className="w-32 bg-white border border-slate-200 text-slate-900 text-center py-2.5 rounded-xl font-black tracking-widest text-lg focus:outline-none focus:border-sky-500 shadow-2xs"
+                      className="flex-1 bg-[#18181B] border border-[#27272A] rounded-xl px-4 py-2.5 text-zinc-100 text-sm focus:outline-none focus:border-[#D4AF87]"
                     />
                     <button
                       type="submit"
-                      disabled={!colorInput.trim()}
-                      className="py-2.5 px-5 bg-gradient-to-r from-sky-600 to-sky-700 hover:from-sky-500 hover:to-sky-600 disabled:opacity-50 text-white font-bold text-xs rounded-xl transition shadow-xs"
+                      className="px-5 py-2.5 bg-[#D4AF87] hover:bg-[#C59F77] text-[#090909] font-bold text-xs uppercase tracking-wider rounded-xl transition cursor-pointer shadow-md"
                     >
-                      Next Plate
+                      Verify
                     </button>
                   </form>
                 </div>
               ) : (
-                <div className="bg-sky-50/50 rounded-2xl p-6 border-2 border-sky-200 text-center space-y-4">
-                  <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-300 flex items-center justify-center mx-auto shadow-2xs">
+                <div className="text-center py-8 px-4 bg-[#18181B] rounded-xl border border-[#D4AF87]/40 space-y-4">
+                  <div className="w-16 h-16 rounded-full bg-[#121214] text-[#D4AF87] border border-[#D4AF87]/60 flex items-center justify-center mx-auto shadow-md">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
-                  <h4 className="text-xl font-black text-slate-900 font-heading">
-                    Color Discrimination Result
-                  </h4>
-                  <p className="text-xs text-slate-600">
-                    You identified all {colorScores.filter(s => s.isCorrect).length} of {ISHIHARA_TESTS.length} plates accurately. Red-Green spectrum receptors appear fully responsive.
+                  <h4 className="font-serif-luxury text-2xl text-[#FAF7F0]">Color Screening Complete</h4>
+                  <p className="text-xs text-zinc-300 max-w-md mx-auto leading-relaxed">
+                    You accurately identified {colorScores.filter(s => s.isCorrect).length} of {ISHIHARA_TESTS.length} plates. Normal trichromatic color discrimination verified.
                   </p>
                   <button
                     onClick={resetColor}
-                    className="px-4 py-2 bg-white border border-slate-200 text-slate-700 text-xs font-bold rounded-xl hover:bg-slate-50 transition shadow-2xs"
+                    className="px-6 py-2.5 bg-[#121214] hover:bg-[#27272A] text-zinc-200 border border-[#27272A] text-xs font-semibold rounded-xl transition cursor-pointer"
                   >
-                    Retest Color Plates
+                    Retake Color Test
                   </button>
                 </div>
               )}
@@ -406,17 +401,17 @@ export default function VisionTestModal() {
           {/* TAB 4: 20-20-20 RULE COMPANION */}
           {activeTab === 'eyestrain' && (
             <div className="space-y-6">
-              <div className="bg-sky-50/60 p-4 rounded-2xl border border-sky-100 text-xs text-slate-600 leading-relaxed font-medium">
-                <strong>Optometric 20-20-20 Rule for Screen Workers:</strong> Every 20 minutes spent staring at screens, pause and look at something at least 20 feet (6 meters) away for a minimum of 20 seconds. This relaxes the ciliary eye muscles and prevents digital fatigue and dry eyes.
+              <div className="bg-[#18181B] p-4 rounded-xl border border-[#27272A] text-xs text-zinc-300 leading-relaxed font-sans">
+                <strong>Optometric 20-20-20 Rule:</strong> Every 20 minutes spent staring at screens, pause and look at something at least 20 feet (6 meters) away for a minimum of 20 seconds. This relaxes the ciliary eye muscles and prevents digital fatigue and dry eyes.
               </div>
 
-              <div className="flex flex-col items-center justify-center p-8 bg-slate-50 rounded-2xl border border-sky-100">
-                <div className="w-40 h-40 rounded-full border-4 border-sky-400 bg-white flex flex-col items-center justify-center relative shadow-md">
-                  <div className="text-3xl font-mono font-black text-slate-900">
+              <div className="flex flex-col items-center justify-center p-8 bg-[#121214] rounded-xl border border-[#27272A]">
+                <div className="w-40 h-40 rounded-full border-4 border-[#D4AF87] bg-black flex flex-col items-center justify-center relative shadow-xl">
+                  <div className="text-3xl font-mono font-black text-[#FAF7F0]">
                     {Math.floor(timerSeconds / 60).toString().padStart(2, '0')}:
                     {(timerSeconds % 60).toString().padStart(2, '0')}
                   </div>
-                  <span className="text-[10px] text-sky-700 font-bold uppercase tracking-wider mt-1">
+                  <span className="text-[10px] text-[#D4AF87] font-semibold uppercase tracking-wider mt-1">
                     {isTimerRunning ? 'Active Screen Timer' : 'Paused'}
                   </span>
                 </div>
@@ -424,7 +419,7 @@ export default function VisionTestModal() {
                 <div className="mt-6 flex items-center gap-3">
                   <button
                     onClick={() => setIsTimerRunning(!isTimerRunning)}
-                    className="py-2.5 px-6 bg-gradient-to-r from-sky-600 to-sky-700 hover:from-sky-500 hover:to-sky-600 text-white font-bold text-xs rounded-xl shadow-md transition"
+                    className="py-3 px-6 bg-[#D4AF87] hover:bg-[#C59F77] text-[#090909] font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition cursor-pointer"
                   >
                     {isTimerRunning ? 'Pause Timer' : 'Start 20-Min Work Cycle'}
                   </button>
@@ -433,7 +428,7 @@ export default function VisionTestModal() {
                       setIsTimerRunning(false);
                       setTimerSeconds(20 * 60);
                     }}
-                    className="p-2.5 bg-white border border-slate-200 text-slate-500 hover:text-slate-800 rounded-xl transition shadow-2xs"
+                    className="p-3 bg-[#18181B] border border-[#27272A] text-zinc-400 hover:text-white rounded-xl transition cursor-pointer"
                     title="Reset Timer"
                   >
                     <RotateCcw className="w-4 h-4" />
@@ -442,17 +437,17 @@ export default function VisionTestModal() {
 
                 {/* Quick eye exercises */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full mt-6 text-xs text-left">
-                  <div className="bg-white p-3.5 rounded-xl border border-sky-100 shadow-2xs">
-                    <strong className="text-sky-700 block mb-1">1. Blink Consciously:</strong>
-                    <span className="text-slate-600">Screen users blink 60% less! Blink fully 10 times to spread natural lipid tears.</span>
+                  <div className="bg-[#18181B] p-4 rounded-xl border border-[#27272A]">
+                    <strong className="text-[#D4AF87] block mb-1">1. Blink Consciously:</strong>
+                    <span className="text-zinc-400">Screen users blink 60% less! Blink fully 10 times to replenish the tear film.</span>
                   </div>
-                  <div className="bg-white p-3.5 rounded-xl border border-amber-200 shadow-2xs">
-                    <strong className="text-amber-800 block mb-1">2. Palming Warmth:</strong>
-                    <span className="text-slate-600">Rub palms together until warm, gently cup over closed eyes for 30 seconds.</span>
+                  <div className="bg-[#18181B] p-4 rounded-xl border border-[#27272A]">
+                    <strong className="text-[#D4AF87] block mb-1">2. Palming Warmth:</strong>
+                    <span className="text-zinc-400">Rub palms together until warm, gently cup over closed eyes for 30 seconds.</span>
                   </div>
-                  <div className="bg-white p-3.5 rounded-xl border border-sky-100 shadow-2xs">
-                    <strong className="text-sky-700 block mb-1">3. Blue Shield Lenses:</strong>
-                    <span className="text-slate-600">Use our Crizal or Blue-Shield 420nm filter glasses during 6+ hour computer sessions.</span>
+                  <div className="bg-[#18181B] p-4 rounded-xl border border-[#27272A]">
+                    <strong className="text-[#D4AF87] block mb-1">3. Blue Shield Lenses:</strong>
+                    <span className="text-zinc-400">Use our Crizal or Blue-Shield 420nm filter glasses during 6+ hour computer sessions.</span>
                   </div>
                 </div>
               </div>
@@ -461,7 +456,7 @@ export default function VisionTestModal() {
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-sky-100 bg-slate-50/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+        <div className="p-4 border-t border-[#27272A] bg-[#121214] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-400">
           <div>
             * Disclaimer: Online screening is an educational self-assessment and does not substitute a clinical slit-lamp examination.
           </div>
@@ -470,7 +465,7 @@ export default function VisionTestModal() {
               setIsVisionTestOpen(false);
               setIsAppointmentModalOpen(true);
             }}
-            className="px-4 py-2 bg-gradient-to-r from-sky-600 to-sky-700 hover:from-sky-500 hover:to-sky-600 text-white font-bold rounded-xl transition flex items-center gap-1.5 whitespace-nowrap shadow-xs"
+            className="px-5 py-2.5 bg-[#D4AF87] hover:bg-[#C59F77] text-[#090909] font-bold text-xs uppercase tracking-wider rounded-xl transition flex items-center gap-1.5 whitespace-nowrap shadow-md cursor-pointer"
           >
             Book Free In-Store Exam
           </button>

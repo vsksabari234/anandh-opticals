@@ -1,148 +1,121 @@
-# Anand Opticals — Exact Reference Image Implementation Plan
+# Floating Glassmorphic Pill Navbar with Interactive Dropdowns
 
-Faithful, pixel-accurate reproduction of the uploaded Anand Opticals visual reference image, matching its exact 8-section layout, typography, colors, photography, and component hierarchy while preserving existing shopping cart, appointment booking, and navigation workflows.
+## Overview & User Decisions
 
-## User Review & Critical Decisions
+This plan outlines the architecture, visual design, and interactive states for modernizing the **Anand Opticals** navigation bar into a floating pill bar with glassmorphic depth, smooth hover dropdown menus, and dedicated pathways for clinical services and virtual styling.
+
+### Confirmed User Decisions
 
 > [!IMPORTANT]
-> The uploaded visual reference image is the single source of truth for the entire visual design. Every section, color token, typography hierarchy, and visual crop is specified to match the reference precisely.
-
-- **Confirmed Decision 1 (Visual Blueprint)**: Implement the exact 8-section hierarchy shown in the reference image: Top Navigation, Cinematic Hero with woman in gold-framed glasses, Clinic Introduction with luxury showroom photo and 4 trust icons, Doctor Profile (Dr. Anitha Ravi) on warm ivory with 3 trust badges, Eye-Care Services with 4 dark glass cards, Eyewear Collection on warm ivory with hero frame and Men/Women/Unisex cards, Appointment Booking with embedded dark interactive form, and Minimalist Luxury Footer.
-- **Confirmed Decision 2 (Color Palette & Mood)**:
-  - Deep Midnight Black (`#090909`) & Charcoal (`#161616`, `#27272A`) for dark sections.
-  - Warm Ivory (`#F7F3EB` / `#FAF7F0`) for editorial contrast sections (Doctor Profile & Eyewear Collection).
-  - Champagne Gold (`#D4AF87` / `#C5A070`) for primary CTAs, active highlights, badges, and cursive script accents.
-- **Confirmed Decision 3 (Typography & Script Elements)**:
-  - Editorial Luxury Serif (`Playfair Display` & `Cormorant Garamond`) for large display headlines.
-  - Modern Sans-Serif (`Plus Jakarta Sans`) for clean navigation and body copy.
-  - Cursive Accent Script (`Playfair Display Italic` or stylized script styling) for the authentic script phrases: *"Clear Vision, Brighter Future"*, *"Your Vision Our Priority"*, and *"Healthy Eyes, Better Tomorrows"*.
-- **Confirmed Decision 4 (Functional Integration)**:
-  - The appointment form will be fully interactive with validation and connected to the existing appointment state and WhatsApp confirmation.
-  - The Eyewear Collection cards will link directly to `/catalog` with category filters (Men, Women, Unisex).
-  - Search, Cart Drawer, and Modals (Virtual Try-On, Appointment Modal) remain fully wired and accessible.
+> - **Navigation Layout**: Clean floating pill bar with glassmorphism blur, elevated above page content with smooth sticky positioning.
+> - **Home Button Dropdown**: Hovering reveals an interactive dropdown with:
+>   - **Clinic**: Quick navigation to the clinical examination suite and Zeiss/Essilor diagnostics.
+>   - **About**: Brand heritage, 40+ years master optical craftsmanship story.
+>   - **Contact**: Showroom addresses (Cathedral Rd, Anna Nagar, Kallakurichi) and WhatsApp direct line.
+>   - **Book Appointment**: Instant modal trigger for comprehensive vision screening.
+> - **Shop Button Dropdown**: Hovering reveals category-filtered pathways:
+>   - **Sunglasses**: Designer sun shields, polarized shades, driving aviators (`/catalog?category=Sunglasses`).
+>   - **Eyeglasses**: Handcrafted acetate, rimless titanium, vintage round (`/catalog?category=Eyeglasses`).
+>   - **Lenses**: Zeiss DuraVision, Essilor Crizal blue-light & contact lenses (`/catalog?category=Prescription+Lenses`).
+>   - **Accessories**: Leather hard cases, gold anti-fog care kits, microfiber cloths (`/catalog?category=Accessories`).
+> - **Virtual Try-On**: Dedicated prominent 3rd navigation item linking straight to the AR 3D Virtual Try-On laboratory (`/vision-lab`).
 
 ---
 
-## 1. Overview & Core Concept
+## 1. User Experience & Visual Architecture
 
-- **What It Does**: Transforms the Anand Opticals homepage into an exact desktop and responsive digital manifestation of the uploaded luxury landing page design, integrating high-end optical retail and clinical ophthalmology services under one unified, prestigious brand identity.
-- **Target Audience / Persona**: Discerning clients looking for bespoke luxury eyewear, designer frames, and professional clinical ophthalmic consultations, precision eye examinations, and custom contact lenses in Chennai.
-- **Key Value**: Provides an elite, confidence-inspiring digital storefront that blends runway-level eyewear aesthetics with medical expertise and friction-free appointment scheduling.
-
----
-
-## 2. User Experience & Visual Design
-
-### Key User Flows
-1. **Hero Immersion & Story Discovery**: The user arrives on the full-bleed dark hero featuring the woman in gold-framed glasses, reads the headline *"See the World Differently"*, and can click *"Watch Our Story"* or scroll down via the indicator.
-2. **Clinic & Showroom Exploration**: The user transitions to the dark Clinic Introduction section, reviews the 4 clinical pillars (*Modern Infrastructure*, *Advanced Technology*, *Expert Care*, *Trusted By Thousands*), views the showroom interior, and can click *"Explore Our Clinic →"*.
-3. **Doctor Credentials & Trust**: The user enters the warm ivory Doctor Profile section featuring Dr. Anitha Ravi (MBBS, DNB Ophthalmology), reads the specialist highlights (*Vision Correction*, *Eye Health & Wellness*, *Patient-Centric Approach*), and can click *"Know More →"*.
-4. **Services Selection**: The user scrolls into the dark Services showcase featuring a macro eye background with 4 interactive glass cards (*Eye Examination*, *Contact Lenses*, *Prescription Glasses*, *Lens Solutions*), each with working action triggers.
-5. **Eyewear Discovery**: On the warm ivory Eyewear Collection section, the user sees the luxury gold aviator sunglasses and selects between three curated category cards: *Men*, *Women*, or *Unisex*, routing immediately into the catalog.
-6. **Appointment Booking**: The user schedules an eye test directly using the embedded dark booking form (*Full Name*, *Phone Number*, *Preferred Date*, *Preferred Time*) with immediate confirmation and WhatsApp integration.
-
-### Visual Identity & Theme
-- **Dominant Neutral Canvas (60%)**: Alternating deep Midnight Black (`#090909`) and Warm Ivory (`#F7F3EB`).
-- **Structural Surfaces (30%)**: Charcoal cards (`#161616`, `border-white/10`), warm ivory panels, and refined hairline dividers (`#27272A`).
-- **Accent Budget (10%)**: Champagne Gold (`#D4AF87`, `#C5A070`) applied strictly to buttons, active navigation markers, and script accents.
-- **Section Sequence**:
-  1. Header & Navigation (1-line wordmark, 5 nav links, search/account/cart icons)
-  2. Cinematic Hero (Dark, woman in gold frames, headline, script accent, slide dots)
-  3. Clinic Introduction (Dark split, showroom photography, 4 trust icons)
-  4. Doctor Profile (Warm ivory, doctor portrait, 3 specialty badges, script accent)
-  5. Eye-Care Services (Dark, macro iris backdrop, 4 glass service cards)
-  6. Eyewear Collection (Warm ivory, hero frame image, Men/Women/Unisex cards)
-  7. Appointment Booking (Dark luxury split, clinic details, embedded form, "Better Vision Better You" vertical element)
-  8. Minimalist Footer (Logo, 5 links, social icons, tagline)
-
----
-
-## 3. Key Product Decisions & Trade-Offs
-
-- **Decision 1: Direct Section Reproduction vs. Abstract Components**:
-  - *Chosen Approach*: Implement the exact 8 sections directly in `src/pages/HomePage.jsx` with shared helper components to eliminate discrepancies in padding, alignment, and styling.
-  - *Why*: Guarantees 1:1 visual fidelity with the reference image without fragmenting styles across unrelated modules.
-- **Decision 2: Image Asset Strategy**:
-  - *Chosen Approach*: Utilize the pristine project images for the showroom interior and doctor portrait, combined with high-fidelity generated assets for the hero woman with gold glasses, macro iris background, and eyewear collection cards.
-  - *Why*: Ensures zero broken images and exact visual alignment with the lighting and mood of the reference image.
-- **Decision 3: Embedded Booking Form**:
-  - *Chosen Approach*: Embed the actual working appointment form into Section 7 rather than having the button open a modal exclusively.
-  - *Why*: The reference image displays an inline interactive form with inputs for Full Name, Phone Number, Date, and Time. The modal will also remain available from header CTAs.
-
----
-
-## 4. Technical Architecture & Data Strategy
+### A. Layout & Geometry
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                       Top Navigation Bar                    │
-│  [Logo: Anand Opticals]   [Home · Shop · Clinic · About · Contact]   [Search · Account · Cart(0)]
-└──────────────────────────────┬──────────────────────────────┘
-                               │
-┌──────────────────────────────▼──────────────────────────────┐
-│                    Cinematic Hero Section                   │
-│  - Headline: "See the World Differently"                    │
-│  - Eyebrow: "ANAND OPTICALS" | Sub: Premium Eyewear · ...   │
-│  - CTA: "Watch Our Story" | Scroll Down | Script Accent     │
-│  - Editorial Photography: Woman in luxury gold eyeglasses   │
-└──────────────────────────────┬──────────────────────────────┘
-                               │
-┌──────────────────────────────▼──────────────────────────────┐
-│                  Clinic Introduction Section                │
-│  - Left: "More Than Just An Opticals Store" + 4 Trust Icons │
-│  - Right: Large Showroom Interior Photography               │
-└──────────────────────────────┬──────────────────────────────┘
-                               │
-┌──────────────────────────────▼──────────────────────────────┐
-│                    Doctor Profile Section                   │
-│  - Background: Warm Ivory (#F7F3EB)                         │
-│  - Left: Dr. Anitha Ravi Portrait with Script Badge         │
-│  - Center: Credentials, Bio, "Know More →" Button           │
-│  - Right: 3 Specialist Cards & Script Accent                │
-└──────────────────────────────┬──────────────────────────────┘
-                               │
-┌──────────────────────────────▼──────────────────────────────┐
-│                   Eye-Care Services Section                 │
-│  - Background: Midnight Black with Macro Iris Backdrop      │
-│  - Left: Headline & "View All Services →"                   │
-│  - Right: 4 Dark Glass Cards (Exam, Lenses, Glasses, Soln)  │
-└──────────────────────────────┬──────────────────────────────┘
-                               │
-┌──────────────────────────────▼──────────────────────────────┐
-│                  Eyewear Collection Section                 │
-│  - Background: Warm Ivory (#F7F3EB)                         │
-│  - Left: "Find Your Perfect Frame" + "Shop Now →"           │
-│  - Center: Luxury Gold Aviator Frame Hero Photo             │
-│  - Right: 3 Category Cards (Men, Women, Unisex)             │
-└──────────────────────────────┬──────────────────────────────┘
-                               │
-┌──────────────────────────────▼──────────────────────────────┐
-│                 Appointment Booking Section                 │
-│  - Left: Clinic Contact, Address, Hours, "Get Directions"   │
-│  - Center: Embedded 4-Field Booking Form & Gold CTA         │
-│  - Right: Vertical Gold Emblem "Better Vision Better You"   │
-└──────────────────────────────┬──────────────────────────────┘
-                               │
-┌──────────────────────────────▼──────────────────────────────┐
-│                    Minimalist Luxury Footer                 │
-│  [Logo]   [Home · Shop · Clinic · About · Contact]   [Socials · Tagline]
-└─────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────────────────────────┐
+│ Floating Glass Pill (max-w-6xl mx-auto, rounded-full, backdrop-blur-xl, border-[#27272A]/70) │
+├───────────────┬───────────────────────────────────────────────────────────────┬─────────────┤
+│ Brand Logo    │ Nav Links with Hover Mega-Flyouts                             │ Action Hub  │
+│ [Glasses Icon]│  • Home  ▾ (Clinic | About | Contact | Book Appointment)      │ [Search]    │
+│  ANAND        │  • Shop  ▾ (Sunglasses | Eyeglasses | Lenses | Accessories)   │ [Account]   │
+│  OPTICALS     │  • Virtual Try-On (Sparkle badge, direct to AR Lab)           │ [Wishlist]  │
+│               │                                                               │ [Bag (count)│
+└───────────────┴───────────────────────────────────────────────────────────────┴─────────────┘
 ```
 
-### Data & State Integration
-- **StoreContext**: Provides `cart`, `openCart`, `openAppointmentModal`, `openTryOn`, and notification toasts.
-- **Appointment Form State**: Local controlled form state with fields `{ fullName, phone, date, time }`. On submission, it creates a booking in context, confirms via toast, and offers direct WhatsApp confirmation.
-- **Routing**: Links route to existing pages:
-  - `Shop` / `View All Eyewear` / Category cards → `/catalog`
-  - `Clinic` / `Doctor` → `/contact` or doctor profile view
-  - `About` → `/contact` or our story section
-  - `Contact` → `/contact`
+- **Container Positioning**: `sticky top-4 z-50 px-4 sm:px-6`. The floating pill sits 16px below the top viewport edge on desktop, creating a refined floating effect with an obsidian glass background (`bg-[#090909]/85 backdrop-blur-xl border border-white/10 shadow-2xl`).
+- **Single-Line Top Bar Contract**: Exactly 3 zones separated by `gap-6 lg:gap-8`:
+  1. **Zone 1: Brand Wordmark** (Left): Elegant wireframe gold eyewear icon + `ANAND OPTICALS` display mark in `font-serif-luxury`.
+  2. **Zone 2: Navigation Links & Dropdowns** (Center):
+     - **Home** with subtle chevron icon. On hover, reveals a dropdown card with 4 sub-options, icon accents, and descriptions.
+     - **Shop** with chevron icon. On hover, reveals a 4-category dropdown with direct deep-links into specific catalog filters.
+     - **Virtual Try-On** with subtle gold sparkle glyph for instant visual distinction.
+  3. **Zone 3: Utility Action Hub** (Right):
+     - Expandable search toggle (opens floating search bar).
+     - Customer Account / Login link with user avatar badge.
+     - Saved Wishlist counter with live badge.
+     - Cart shopping bag with gold badge count and drawer opening.
+     - Mobile menu trigger toggle for small screens.
+
+### B. Interactive Hover Dropdowns
+
+#### 1. Home Flyout Menu
+- **Trigger**: Hovering over "Home" button with 150ms exit delay (`pointer-events-auto`, smooth opacity/scale transition).
+- **Items**:
+  - `Clinic`: Icon + "Diagnostic Eye Suite & Zeiss Precision Refraction"
+  - `About`: Icon + "Our Heritage & 40+ Years Optical Craftsmanship"
+  - `Contact`: Icon + "Boutiques, Showrooms & WhatsApp Concierge"
+  - `Book Appointment`: Highlighted card with gold accent to trigger `AppointmentModal`.
+
+#### 2. Shop Flyout Menu
+- **Trigger**: Hovering over "Shop" button.
+- **Items**:
+  - `Sunglasses`: UV400, polarized driving & luxury editorial shades.
+  - `Eyeglasses`: Japanese titanium, Italian Mazzucchelli acetate & computer glasses.
+  - `Lenses`: Single vision, progressive, blue-light blocking & contact lenses.
+  - `Accessories`: Genuine leather cases, cleaning kits & luxury cords.
+
+#### 3. Virtual Try-On
+- Direct link with live route matching indicator (`/vision-lab`), highlighting when active with a champagne gold underline and glowing dot.
+
+### C. Mobile Responsive Experience
+- On viewports `< 768px`, the floating bar adapts gracefully with brand logo, quick cart trigger, and a sliding drawer menu containing expandable accordion sections for **Home** and **Shop**, plus direct buttons for **Virtual Try-On** and **Book Appointment**.
 
 ---
 
-## 5. Execution Steps (Post-Approval)
+## 2. Technical Strategy & Component Architecture
 
-1. **Verify Asset Availability**: Check existing images in `/src/assets/images` and ensure all required image slots have high-fidelity assets matching the reference.
-2. **Refactor `src/pages/HomePage.jsx`**: Implement all 8 sections in the exact visual order, with identical typography, proportions, script calligraphy accents, and colors.
-3. **Harmonize Top Navigation (`Navbar.jsx`)**: Ensure the logo, nav links (`Home`, `Shop`, `Clinic`, `About`, `Contact`), and action icons (`Search`, `Account`, `Cart`) match the reference header.
-4. **Compile & Lint Verification**: Run `compile_applet` and `lint_applet` to confirm zero build or runtime errors.
+### Component Hierarchy
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                       App.jsx                           │
+│  ┌───────────────────────────────────────────────────┐  │
+│  │                     Navbar                        │  │
+│  │  ┌─────────────────┐ ┌───────────────┐ ┌────────┐ │  │
+│  │  │  BrandWordmark  │ │ NavDropdowns  │ │ Action │ │  │
+│  │  │  (Logo & Title) │ │ (Home, Shop,  │ │ Hub    │ │  │
+│  │  │                 │ │  Try-On)      │ │        │ │  │
+│  │  └─────────────────┘ └───────────────┘ └────────┘ │  │
+│  └───────────────────────────────────────────────────┘  │
+│  ┌───────────────────────────────────────────────────┐  │
+│  │          AppointmentModal / CartDrawer            │  │
+│  └───────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────┘
+```
+
+### State & Handler Mapping
+- `activeDropdown`: `'home' | 'shop' | null` managed via mouse-enter and mouse-leave with debounced timeout to prevent jitter.
+- `mobileMenuOpen`: Boolean state controlling the slide-down mobile glass drawer.
+- `searchOpen`: Expandable inline search input that seamlessly redirects to `/catalog?search=...`.
+- `isAppointmentModalOpen`: Directly connects with the global modal or context to open the optometrist booking interface when clicked from the dropdown.
+
+---
+
+## 3. Implementation Steps
+
+1. **Refactor `src/components/Navbar.jsx`**:
+   - Convert outer container into a floating pill with `sticky top-3.5 z-50 max-w-6xl mx-auto px-4`.
+   - Apply deep obsidian glassmorphism (`bg-[#090909]/85 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full`).
+   - Implement structured hover state handlers for **Home** and **Shop** with smooth CSS animations (`animate-fade-in` and `transform scale-95 -> scale-100`).
+   - Wire each dropdown item to the exact corresponding route, hash anchor, or booking modal action.
+   - Retain full functionality for Search, Wishlist, Cart Drawer, and User Account.
+2. **Mobile Drawer Enhancements**:
+   - Provide clean accordion collapses for Home and Shop sub-links with touch-optimized targets ($\ge 44\text{px}$).
+3. **Verification**:
+   - Run `compile_applet` and test desktop hover states, keyboard navigation, and mobile menu transitions.
