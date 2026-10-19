@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useStore } from '../context/StoreContext';
 import { BUSINESS_INFO } from '../data/business';
 import {
@@ -25,12 +25,13 @@ import showroomImg from '../assets/images/optical_showroom_1791949566865.jpg';
 import doctorPortraitImg from '../assets/images/doctor_portrait_1791949570094.jpg';
 import macroEyeImg from '../assets/images/macro_human_eye_iris_1792123622728.jpg';
 import goldSunglassesTableImg from '../assets/images/luxury_gold_sunglasses_table_1792123622864.jpg';
-import menCategoryImg from '../assets/images/model_man_square_1791949598792.jpg';
-import womenCategoryImg from '../assets/images/model_female_round_1791949598824.jpg';
+import menCategoryImg from '../assets/images/frame_clubmaster_browline_1792301527114.jpg';
+import womenCategoryImg from '../assets/images/frame_celestial_oval_gold_1792301542656.jpg';
 import unisexCategoryImg from '../assets/images/frame_geometric_gold_1791952519461.jpg';
 
 export default function HomePage() {
   const navigate = useNavigate();
+  const location = useLocation();
   const {
     bookAppointment
   } = useStore();
@@ -53,6 +54,18 @@ export default function HomePage() {
     }
   };
 
+  useEffect(() => {
+    if (location.hash) {
+      const timer = setTimeout(() => {
+        const el = document.querySelector(location.hash);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, [location.hash]);
+
   const handleBookingSubmit = (e) => {
     e.preventDefault();
     if (!bookingData.fullName.trim() || !bookingData.phone.trim() || !bookingData.date) {
@@ -69,7 +82,7 @@ export default function HomePage() {
         preferredDate: bookingData.date,
         preferredTime: bookingData.time,
         service: 'Comprehensive Eye Examination',
-        doctor: 'Dr. Anitha Ravi',
+        doctor: 'Dr. Ayyadhurai',
         branch: 'Chennai / Kallakurichi'
       });
     }
@@ -255,7 +268,7 @@ export default function HomePage() {
       </section>
 
       {/* =========================================================================
-          SECTION 4: DOCTOR PROFILE ("Dr. Anitha Ravi" / Eye Care Specialist)
+          SECTION 4: DOCTOR PROFILE ("Dr. Ayyadhurai" / Eye Care Specialist)
           Warm ivory background, doctor portrait on left with "Your Vision Our Priority"
           script badge, credentials & bio in center, 3 specialist cards & decorative script on right.
       ========================================================================== */}
@@ -267,7 +280,7 @@ export default function HomePage() {
               <div className="relative rounded-2xl overflow-hidden shadow-xl border border-[#E5E0D5]">
                 <img
                   src={doctorPortraitImg}
-                  alt="Dr. Anitha Ravi, Consultant Ophthalmologist at Anand Opticals"
+                  alt="Dr. Ayyadhurai, Consultant Ophthalmologist at Anand Opticals"
                   className="w-full h-[440px] sm:h-[480px] object-cover object-top"
                   referrerPolicy="no-referrer"
                 />
@@ -288,7 +301,7 @@ export default function HomePage() {
               </span>
 
               <h2 className="font-serif-luxury text-4xl sm:text-5xl font-normal text-[#18181B] leading-tight mb-2">
-                Dr. Anitha Ravi
+                Dr. Ayyadhurai
               </h2>
 
               <p className="text-xs font-medium uppercase tracking-wider text-zinc-600 mb-1">
@@ -299,7 +312,7 @@ export default function HomePage() {
               </p>
 
               <p className="text-zinc-700 text-sm leading-relaxed mb-8">
-                With a passion for clear vision and healthy eyes, Dr. Anitha Ravi brings years of experience in diagnosing and treating a wide range of eye conditions.
+                With a passion for clear vision and healthy eyes, Dr. Ayyadhurai brings years of experience in diagnosing and treating a wide range of eye conditions.
               </p>
 
               <div>
@@ -575,11 +588,11 @@ export default function HomePage() {
 
             {/* Right Column: 3 Category Cards (Men, Women, Unisex) */}
             <div className="lg:col-span-5">
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+              <div className="category-card-row flex flex-col sm:flex-row gap-3.5 w-full">
                 {/* Category 1: Men */}
                 <div
                   onClick={() => navigateToCategory('men')}
-                  className="relative rounded-2xl overflow-hidden group cursor-pointer shadow-md h-[280px] sm:h-[320px]"
+                  className="category-expand-card relative rounded-2xl overflow-hidden group cursor-pointer shadow-md h-[280px] sm:h-[320px] w-full"
                 >
                   <img
                     src={menCategoryImg}
@@ -593,6 +606,9 @@ export default function HomePage() {
                     <h3 className="font-serif-luxury text-lg text-white font-medium">
                       Men
                     </h3>
+                    <p className="category-card-desc text-xs text-zinc-300 font-sans tracking-wide">
+                      Bold &amp; classic frames
+                    </p>
                     <div className="flex items-center gap-1 text-[11px] uppercase tracking-wider text-[#D4AF87] font-sans group-hover:text-white transition-colors">
                       <span>Explore</span>
                       <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
@@ -603,7 +619,7 @@ export default function HomePage() {
                 {/* Category 2: Women */}
                 <div
                   onClick={() => navigateToCategory('women')}
-                  className="relative rounded-2xl overflow-hidden group cursor-pointer shadow-md h-[280px] sm:h-[320px]"
+                  className="category-expand-card relative rounded-2xl overflow-hidden group cursor-pointer shadow-md h-[280px] sm:h-[320px] w-full"
                 >
                   <img
                     src={womenCategoryImg}
@@ -617,6 +633,9 @@ export default function HomePage() {
                     <h3 className="font-serif-luxury text-lg text-white font-medium">
                       Women
                     </h3>
+                    <p className="category-card-desc text-xs text-zinc-300 font-sans tracking-wide">
+                      Elegant &amp; light frames
+                    </p>
                     <div className="flex items-center gap-1 text-[11px] uppercase tracking-wider text-[#D4AF87] font-sans group-hover:text-white transition-colors">
                       <span>Explore</span>
                       <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
@@ -627,7 +646,7 @@ export default function HomePage() {
                 {/* Category 3: Unisex */}
                 <div
                   onClick={() => navigateToCategory('unisex')}
-                  className="relative rounded-2xl overflow-hidden group cursor-pointer shadow-md h-[280px] sm:h-[320px]"
+                  className="category-expand-card relative rounded-2xl overflow-hidden group cursor-pointer shadow-md h-[280px] sm:h-[320px] w-full"
                 >
                   <img
                     src={unisexCategoryImg}
@@ -641,6 +660,9 @@ export default function HomePage() {
                     <h3 className="font-serif-luxury text-lg text-white font-medium">
                       Unisex
                     </h3>
+                    <p className="category-card-desc text-xs text-zinc-300 font-sans tracking-wide">
+                      Minimal for everyone
+                    </p>
                     <div className="flex items-center gap-1 text-[11px] uppercase tracking-wider text-[#D4AF87] font-sans group-hover:text-white transition-colors">
                       <span>Explore</span>
                       <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />

@@ -118,3 +118,53 @@
 .animate-pulse-slow {
   animation: pulseSlow 4s ease-in-out infinite;
 }
+
+/* =========================================================================
+   Eyewear Collection 3 Category Cards: Hover-Expand Effect (Desktop/Tablet)
+   ========================================================================= */
+.category-card-desc {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .category-card-row {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+  }
+
+  .category-expand-card {
+    flex: 1 1 0% !important;
+    min-width: 0 !important;
+    transition: flex 0.5s ease-out, flex-grow 0.5s ease-out !important;
+    will-change: flex-grow;
+  }
+
+  /* When row is hovered, sibling cards shrink slightly to make space */
+  .category-card-row:hover .category-expand-card {
+    flex: 0.8 1 0% !important;
+  }
+
+  /* Hovered card smoothly expands */
+  .category-card-row .category-expand-card:hover {
+    flex: 1.8 1 0% !important;
+  }
+
+  .category-card-desc {
+    display: block;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out, margin-bottom 0.5s ease-out;
+    margin-bottom: 0;
+  }
+
+  .category-expand-card:hover .category-card-desc {
+    max-height: 24px;
+    opacity: 1;
+    margin-bottom: 4px;
+  }
+}
+

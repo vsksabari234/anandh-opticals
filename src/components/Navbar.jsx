@@ -303,12 +303,12 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => {
-                  navigate('/catalog');
+                  navigate('/shop');
                   closeDropdown();
                   window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
                 }}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs uppercase tracking-[0.18em] font-sans transition-all duration-200 cursor-pointer ${
-                  activeDropdown === 'shop' || isCurrentPath('/catalog')
+                  activeDropdown === 'shop' || isCurrentPath('/shop')
                     ? 'text-[#D4AF87] bg-white/5 font-medium'
                     : 'text-zinc-300 hover:text-white hover:bg-white/5'
                 }`}
@@ -333,7 +333,7 @@ export default function Navbar() {
                       Curated Optical Collections
                     </span>
                     <Link
-                      to="/catalog"
+                      to="/shop"
                       onClick={() => {
                         closeDropdown();
                         window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
@@ -348,7 +348,7 @@ export default function Navbar() {
                   <div className="space-y-1">
                     {/* Sunglasses */}
                     <Link
-                      to="/catalog?category=Sunglasses"
+                      to="/shop#frames"
                       onClick={() => {
                         closeDropdown();
                         window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
@@ -373,7 +373,7 @@ export default function Navbar() {
 
                     {/* Eyeglasses */}
                     <Link
-                      to="/catalog?category=Eyeglasses"
+                      to="/shop#frames"
                       onClick={() => {
                         closeDropdown();
                         window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
@@ -395,7 +395,7 @@ export default function Navbar() {
 
                     {/* Lenses */}
                     <Link
-                      to="/catalog?category=Prescription+Lenses"
+                      to="/shop#frames"
                       onClick={() => {
                         closeDropdown();
                         window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
@@ -417,7 +417,7 @@ export default function Navbar() {
 
                     {/* Accessories */}
                     <Link
-                      to="/catalog?category=Accessories"
+                      to="/shop#frames"
                       onClick={() => {
                         closeDropdown();
                         window.scrollTo({ top: 0, left: 0, behavior: 'instant' });

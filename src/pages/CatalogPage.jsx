@@ -1291,7 +1291,7 @@ export default function CatalogPage() {
                   Expert Optometry Care
                 </h4>
                 <p className="text-[11px] text-zinc-400 leading-snug">
-                  Prescription verification by Dr. Anitha Ravi (Ophthalmology).
+                  Prescription verification by Dr. Ayyadhurai (Ophthalmology).
                 </p>
               </div>
             </div>

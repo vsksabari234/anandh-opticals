@@ -136,7 +136,7 @@ export default function Footer() {
             </Link>
 
             <p className="text-xs text-zinc-400 leading-relaxed pr-4">
-              Purveyors of master-crafted ophthalmic frames, aerograde Japanese beta-titanium, Italian Mazzucchelli acetate, and comprehensive clinical eye diagnostics under the medical directorship of Dr. Anitha Ravi.
+              Purveyors of master-crafted ophthalmic frames, aerograde Japanese beta-titanium, Italian Mazzucchelli acetate, and comprehensive clinical eye diagnostics under the medical directorship of Dr. Ayyadhurai.
             </p>
 
             <div className="space-y-2.5 text-xs text-zinc-400">
